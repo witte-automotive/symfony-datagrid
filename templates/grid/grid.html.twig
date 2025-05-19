@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="js-sydatagrid content-container bg-white overflow-auto shadow-md px-2 py-0 {% if not grid.isPaginated %}!px-0 max-h-[500px]{% endif %}" data-pagination-data='{{grid.jsonPaginationData}}'>
+		<table class="table w-full min-w-max">
+			<thead>
+				<tr>
+					{% for col in grid.columns %}
+						<th class="p-3 text-center" data-coltype="{{ col.type.value }}" data-key="{{ col.key }}">
+							{{ col.label }}
+						</th>
+					{% endfor %}
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for row in grid.data.data %}
+					<tr class="border-t even:bg-light">
+						{% for col in grid.columns %}
+							<td class="text-center p-4" data-rowcolkey="{{ col.key }}">
+								{{ col.value(row) }}
+							</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+		<div class="js-sydatagrid-p-placeholder">
+			{% if grid.isPaginated %}
+				{% include "grid/pagination.html.twig" with {
+		paginated: grid.data,
+	} %}
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

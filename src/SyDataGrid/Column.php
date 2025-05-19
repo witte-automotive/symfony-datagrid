@@ -6,14 +6,14 @@ class Column
     public ColumnTypeEnum $type = ColumnTypeEnum::TEXT;
     public bool $searchable = false;
     public bool $sortable = false;
-    public function __construct(private string $label, private string $key)
+    public mixed $callback = null;
+    public function __construct(public string $key, public string $label)
     {
     }
 
-    public function value(): string
+    public function value($row): string
     {
-        $val = SyDataGrid::EMPTY_PLACEHOLDER;
-
+        $val = Service::resolveValue($this, $row);
         return $val;
     }
 }

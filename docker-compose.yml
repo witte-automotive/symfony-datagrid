@@ -1,6 +1,6 @@
 version: "3.7"
 networks:
-  screens-network:
+  datagrics-network:
     driver: bridge
 
 services:
@@ -29,7 +29,7 @@ services:
   db:
     image: mysql
     volumes:
-      - screens-db:/var/lib/mysql
+      - datagrics-db:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
@@ -55,4 +55,4 @@ services:
     command: ["npm", "run", "dev"]
 
 volumes:
-  screens-db:
+  datagrics-db:
