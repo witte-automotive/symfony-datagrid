@@ -10,7 +10,7 @@ class Paginated
         public int $page,
         public int $perPage,
         public int $pageRange,
-        public array $data,
+        public array $data = [],
     ) {
         $this->visiblePages = $this->getVisiblePages();
         $this->totalPages = $this->getTotalPages();
@@ -36,5 +36,15 @@ class Paginated
         }
 
         return range($start, $end);
+    }
+
+    public function witnotData()
+    {
+        return new self(
+            $this->total,
+            $this->page,
+            $this->perPage,
+            $this->pageRange
+        );
     }
 }

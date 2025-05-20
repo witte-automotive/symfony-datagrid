@@ -5,11 +5,11 @@ use Doctrine\ORM\QueryBuilder;
 
 class PaginationService
 {
-    public static function paginate(QueryBuilder $dataSource, Paginated|null $current = null): Paginated
+    public static function paginate(QueryBuilder $dataSource, int|null $page = null, int|null $perPage = null): Paginated
     {
-        $page = $current?->page ?? 1;
+        $page ??= 1;
         $total = 0;
-        $perPage = $current?->perPage ?? 10;
+        $perPage ??= 10;
         $pageRange = 3;
         $data = [];
 

@@ -5,12 +5,8 @@ use Doctrine\ORM\QueryBuilder;
 
 final readonly class Service
 {
-    public static function transformData(QueryBuilder $dataSource, SyDataGrid $grid): Paginated
+    public static function transformData(QueryBuilder $dataSource): Paginated
     {
-        $p = PaginationService::paginate($dataSource);
-        $firstItem = current($p->data);
-        $grid->dataSourceClass = $firstItem ? get_class($firstItem) : null;
-
         return PaginationService::paginate($dataSource);
     }
 

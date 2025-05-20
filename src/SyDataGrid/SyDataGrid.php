@@ -2,6 +2,7 @@
 namespace App\SyDataGrid;
 
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\Request;
 
 class SyDataGrid
 {
@@ -11,11 +12,12 @@ class SyDataGrid
      */
     public array $columns;
     public Paginated $data;
-    public string|null $dataSourceClass = null;
+    public string $resetUrl;
 
-    public function __construct(QueryBuilder $dataSource)
+    public function __construct(private QueryBuilder $dataSource, string $resetUrl)
     {
-        $this->data = Service::transformData($dataSource, $this);
+        $this->resetUrl = $resetUrl;
+        $this->data = Service::transformData($dataSource);
     }
 
     public function addColumn(string $key, string $label): Column
@@ -32,5 +34,16 @@ class SyDataGrid
         unset($array['data']);
 
         return json_encode($array);
+    }
+
+    public function update(Request $request)
+    {
+        $query = $request->query;
+
+        $this->data = PaginationService::paginate(
+            $this->dataSource,
+            $query->get('page'),
+            $query->get('perPage')
+        );
     }
 }

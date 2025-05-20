@@ -25,7 +25,7 @@
 
 			<div class="flex ">
 				{% for page in paginated.visiblePages %}
-					<button type="button" data-page="{{ page }}" class="relative z-10 inline-flex items-center !opacity-100 border px-4 py-2 text-sm font-semibold {{ page == paginated.page ? 'bg-primary text-white' : 'text-gray-700 hover:bg-light' }}">
+					<button type="button" data-page="{{ page }}" class="js-sdg-p-page relative z-10 inline-flex items-center !opacity-100 border px-4 py-2 text-sm font-semibold {{ page == paginated.page ? 'bg-primary text-white' : 'text-gray-700 hover:bg-light' }}">
 						{{ page }}
 					</button>
 				{% endfor %}

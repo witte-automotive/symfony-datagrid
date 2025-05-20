@@ -1,34 +1,30 @@
-{% extends "base.html.twig" %}
+<div class="js-sydatagrid content-container bg-white overflow-auto shadow-md px-2 py-0" data-reset-url="{{grid.resetUrl}}" data-pagination-data='{{grid.jsonPaginationData}}'>
+	<table class="table w-full min-w-max">
+		<thead>
+			<tr>
+				{% for col in grid.columns %}
+					<th class="p-3 text-center" data-coltype="{{ col.type.value }}" data-key="{{ col.key }}">
+						{{ col.label }}
+					</th>
+				{% endfor %}
+			</tr>
+		</thead>
 
-{% block body %}
-	<div class="js-sydatagrid content-container bg-white overflow-auto shadow-md px-2 py-0" data-pagination-data='{{grid.jsonPaginationData}}'>
-		<table class="table w-full min-w-max">
-			<thead>
-				<tr>
+		<tbody>
+			{% for row in grid.data.data %}
+				<tr class="border-t even:bg-light">
 					{% for col in grid.columns %}
-						<th class="p-3 text-center" data-coltype="{{ col.type.value }}" data-key="{{ col.key }}">
-							{{ col.label }}
-						</th>
+						<td class="text-center p-4" data-rowcolkey="{{ col.key }}">
+							{{ col.value(row) }}
+						</td>
 					{% endfor %}
 				</tr>
-			</thead>
-
-			<tbody>
-				{% for row in grid.data.data %}
-					<tr class="border-t even:bg-light">
-						{% for col in grid.columns %}
-							<td class="text-center p-4" data-rowcolkey="{{ col.key }}">
-								{{ col.value(row) }}
-							</td>
-						{% endfor %}
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+			{% endfor %}
+		</tbody>
+	</table>
 
 
-		{% include "grid/pagination.html.twig" with {
+	{% include "grid/pagination.html.twig" with {
 		paginated: grid.data,
 	} %}
-	</div>
-{% endblock %}
+</div>
