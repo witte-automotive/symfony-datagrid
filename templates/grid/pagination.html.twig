@@ -49,4 +49,11 @@
 			</button>
 		</nav>
 	</div>
+	<div>
+		<select name="" id="" class="js-sdg-pps px-3 py-2 !outline-none border">
+			{% for pp in grid.perPageOptions %}
+				<option value="{{pp}}" {% if paginated.perPage == pp %} selected {% endif %}>{{pp}}</option>
+			{% endfor %}
+		</select>
+	</div>
 </div>

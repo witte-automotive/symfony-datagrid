@@ -43,6 +43,16 @@ export default class DataGrid {
         addClickListener('.js-sdg-p-next-btn', () => this.updateCurrentPage(this.pdata.page + 1));
         addClickListener('.js-sdg-p-fp', () => this.updateCurrentPage(1));
         addClickListener('.js-sdg-p-lp', () => this.updateCurrentPage(this.pdata.totalPages));
+
+        this.initPerPageChange();
+    }
+
+    private initPerPageChange = () => {
+        const perPageSelect = this.container.querySelector<HTMLInputElement>('.js-sdg-pps');
+        perPageSelect?.addEventListener('change', () => {
+            this.pdata.perPage = Number(perPageSelect.value);
+            this.fetchPageData();
+        })
     }
 
     private updateCurrentPage = (page: number): void => {

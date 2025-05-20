@@ -31,7 +31,7 @@ final readonly class Service
         }
 
         if ($column->type && $val) {
-            if ($column->type === ColumnTypeEnum::DATE) {
+            if ($column->type === ColumnTypeEnum::DATE || $column->type === ColumnTypeEnum::DATETIME) {
                 try {
                     if (is_string($val)) {
                         $date = new \DateTimeImmutable($val);

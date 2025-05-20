@@ -14,6 +14,12 @@ class SyDataGrid
     public Paginated $data;
     public string $resetUrl;
 
+    public array $perPageOptions = [
+        10,
+        25,
+        50
+    ];
+
     public function __construct(public QueryBuilder $dataSource, string $resetUrl)
     {
         $this->resetUrl = $resetUrl;
