@@ -45,8 +45,6 @@ export default class DataGrid {
         addClickListener('.js-sdg-p-lp', () => this.updateCurrentPage(this.pdata.totalPages));
     }
 
-    // X-Requested-With
-
     private updateCurrentPage = (page: number): void => {
         if (page < 1 || page > this.pdata.totalPages) return;
         this.pdata.page = page;

@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\SyDataGrid\Paginated;
 use App\SyDataGrid\SyDataGrid;
+use App\SyDataGrid\SyDataGridFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,13 +14,16 @@ use Twig\Environment;
 
 class Controller extends AbstractController
 {
-    public function __construct(private EntityManagerInterface $em, private UrlGeneratorInterface $urlGenerator, private Environment $twig)
-    {
+    public function __construct(
+        private EntityManagerInterface $em,
+        private UrlGeneratorInterface $urlGenerator,
+        private SyDataGridFactory $gridFactory,
+    ) {
     }
     #[Route('/', name: 'example')]
     public function init(Request $request)
     {
-        $dg = new SyDataGrid(
+        $dg = $this->gridFactory->create(
             $this->em->getRepository(User::class)->createQueryBuilder('u'),
             $this->urlGenerator->generate('example')
         );
@@ -29,14 +33,7 @@ class Controller extends AbstractController
         $dg->addColumn('type', 'Type');
 
         if ($request->isXmlHttpRequest()) {
-            $dg->update($request);
-
-            return $this->json([
-                'pagination' => $dg->data->witnotData(),
-                'html' => $this->twig->render('grid/grid.html.twig', [
-                    'grid' => $dg
-                ])
-            ]);
+            return $this->json($this->gridFactory->update($request));
         }
 
         return $this->render('index.html.twig', [

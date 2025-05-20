@@ -36,14 +36,4 @@ class SyDataGrid
         return json_encode($array);
     }
 
-    public function update(Request $request)
-    {
-        $query = $request->query;
-
-        $this->data = PaginationService::paginate(
-            $this->dataSource,
-            $query->get('page'),
-            $query->get('perPage')
-        );
-    }
 }
