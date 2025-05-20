@@ -1,54 +1,52 @@
-<template class="js-sdg-p-template">
-	<div class="js-sdg-p w-full flex justify-between items-center mt-6 p-4">
-		<div>
-			<span class="font-bold">Total records:
-			</span>
-			<div class="js-sdg-p-total">{{ paginated.total }}</div>
-		</div>
-		<div>
-			<nav class="isolate inline-flex -space-x-px rounded-md shadow-xs " aria-label="Pagination">
-				<button type="button" class="js-sdg-p-prev-btn relative inline-flex items-center rounded-l-md p-2 border">
-					<svg class="w-5 h-5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
-						<path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
-					</svg>
-				</button>
-
-				<div class="flex js-sdg-p-fp-els-cont">
-					{% if paginated.page >= paginated.pageRange - 1 + (paginated.pageRange // 2) %}
-						<button type="button" data-page="1" class="js-sdg-p-fp relative inline-flex items-center px-4 py-2 border text-gray-700 hover:bg-light">
-							1
-						</button>
-						<span class="js-sdg-p-fp-els relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 select-none">
-							...
-						</span>
-					{% endif %}
-				</div>
-
-				<div class="flex ">
-					{% for page in paginated.visiblePages %}
-						<button type="button" data-page="{{ page }}" class="relative z-10 inline-flex items-center !opacity-100 border px-4 py-2 text-sm font-semibold {{ page == paginated.page ? 'bg-primary text-white' : 'text-gray-700 hover:bg-light' }}">
-							{{ page }}
-						</button>
-					{% endfor %}
-				</div>
-
-				<div class="flex ">
-					{% if paginated.totalPages > paginated.pageRange and paginated.page + (paginated.pageRange // 2) < paginated.totalPages %}
-						<span class=" relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 select-none">
-							...
-						</span>
-						<button type="button" data-page="{{ paginated.totalPages }}" class="relative inline-flex items-center px-4 py-2 border text-gray-700 hover:bg-light">
-							{{ paginated.totalPages }}
-						</button>
-					{% endif %}
-				</div>
-
-				<button type="button" class="js-sdg-p-next-btn relative inline-flex items-center rounded-r-md p-2 border">
-					<svg class="w-5 h-5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
-						<path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
-					</svg>
-				</button>
-			</nav>
-		</div>
+<div class="js-sdg-p w-full flex justify-between items-center mt-6 p-4">
+	<div>
+		<span class="font-bold">Total records:
+		</span>
+		{{ paginated.total }}
 	</div>
-</template>
+	<div>
+		<nav class="isolate inline-flex -space-x-px rounded-md shadow-xs " aria-label="Pagination">
+			<button type="button" class="js-sdg-p-prev-btn relative inline-flex items-center rounded-l-md p-2 border">
+				<svg class="w-5 h-5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/>
+				</svg>
+			</button>
+
+			<div class="flex js-sdg-p-fp-els-cont">
+				{% if paginated.page >= paginated.pageRange - 1 + (paginated.pageRange // 2) %}
+					<button type="button" data-page="1" class="js-sdg-p-fp relative inline-flex items-center px-4 py-2 border text-gray-700 hover:bg-light">
+						1
+					</button>
+					<span class="js-sdg-p-fp-els relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 select-none">
+						...
+					</span>
+				{% endif %}
+			</div>
+
+			<div class="flex ">
+				{% for page in paginated.visiblePages %}
+					<button type="button" data-page="{{ page }}" class="relative z-10 inline-flex items-center !opacity-100 border px-4 py-2 text-sm font-semibold {{ page == paginated.page ? 'bg-primary text-white' : 'text-gray-700 hover:bg-light' }}">
+						{{ page }}
+					</button>
+				{% endfor %}
+			</div>
+
+			<div class="flex ">
+				{% if paginated.totalPages > paginated.pageRange and paginated.page + (paginated.pageRange // 2) < paginated.totalPages %}
+					<span class=" relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 select-none">
+						...
+					</span>
+					<button type="button" data-page="{{ paginated.totalPages }}" class="relative inline-flex items-center px-4 py-2 border text-gray-700 hover:bg-light">
+						{{ paginated.totalPages }}
+					</button>
+				{% endif %}
+			</div>
+
+			<button type="button" class="js-sdg-p-next-btn relative inline-flex items-center rounded-r-md p-2 border">
+				<svg class="w-5 h-5" viewbox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"/>
+				</svg>
+			</button>
+		</nav>
+	</div>
+</div>

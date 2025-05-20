@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<div class="js-sydatagrid content-container bg-white overflow-auto shadow-md px-2 py-0 {% if not grid.isPaginated %}!px-0 max-h-[500px]{% endif %}" data-pagination-data='{{grid.jsonPaginationData}}'>
+	<div class="js-sydatagrid content-container bg-white overflow-auto shadow-md px-2 py-0" data-pagination-data='{{grid.jsonPaginationData}}'>
 		<table class="table w-full min-w-max">
 			<thead>
 				<tr>
@@ -27,12 +27,8 @@
 		</table>
 
 
-		<div class="js-sydatagrid-p-placeholder">
-			{% if grid.isPaginated %}
-				{% include "grid/pagination.html.twig" with {
+		{% include "grid/pagination.html.twig" with {
 		paginated: grid.data,
 	} %}
-			{% endif %}
-		</div>
 	</div>
 {% endblock %}

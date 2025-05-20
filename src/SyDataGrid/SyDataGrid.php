@@ -10,11 +10,10 @@ class SyDataGrid
      * @var Column[]
      */
     public array $columns;
-    public array|Paginated $data;
-    public bool $isPaginated = true;
+    public Paginated $data;
     public string|null $dataSourceClass = null;
 
-    public function __construct(array|QueryBuilder $dataSource)
+    public function __construct(QueryBuilder $dataSource)
     {
         $this->data = Service::transformData($dataSource, $this);
     }
