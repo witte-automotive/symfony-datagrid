@@ -7,33 +7,29 @@ use Twig\Environment;
 
 class SyDataGridFactory
 {
-    private QueryBuilder $dataSource;
-    private SyDataGrid $grid;
     public function __construct(private Environment $twig)
     {
     }
 
     public function create(QueryBuilder $dataSource, string $resetUrl): SyDataGrid
     {
-        $this->dataSource = $dataSource;
-        $this->grid = new SyDataGrid($dataSource, $resetUrl);
-        return $this->grid;
+        return new SyDataGrid($dataSource, $resetUrl);
     }
 
-    public function update(Request $request): array
+    public function refresh(SyDataGrid $grid, Request $request): array
     {
         $query = $request->query;
 
-        $this->grid->data = PaginationService::paginate(
-            $this->dataSource,
+        $grid->data = PaginationService::paginate(
+            $grid->dataSource,
             $query->get('page'),
             $query->get('perPage')
         );
 
         return [
-            'pagination' => $this->grid->data->witnotData(),
+            'pagination' => $grid->data->witnotData(),
             'html' => $this->twig->render('grid/grid.html.twig', [
-                'grid' => $this->grid
+                'grid' => $grid
             ])
         ];
     }

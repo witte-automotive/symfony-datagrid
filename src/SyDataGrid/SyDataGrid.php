@@ -14,7 +14,7 @@ class SyDataGrid
     public Paginated $data;
     public string $resetUrl;
 
-    public function __construct(private QueryBuilder $dataSource, string $resetUrl)
+    public function __construct(public QueryBuilder $dataSource, string $resetUrl)
     {
         $this->resetUrl = $resetUrl;
         $this->data = Service::transformData($dataSource);
