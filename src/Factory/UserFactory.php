@@ -23,7 +23,9 @@ class UserFactory
         );
 
         $dg->addColumn('id', 'Id');
-        $dg->addColumn('name', 'Name');
+        $dg->addColumn('name', 'Name')
+            ->setSearchable(true);
+            
         $dg->addColumn('type', 'Type');
 
         return $dg;

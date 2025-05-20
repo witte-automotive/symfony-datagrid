@@ -3,7 +3,7 @@
 		<thead>
 			<tr>
 				{% for col in grid.columns %}
-					<th class="p-3 text-center" data-coltype="{{ col.type.value }}" data-key="{{ col.key }}">
+					<th class="p-3 py-3 text-center">
 						{{ col.label }}
 					</th>
 				{% endfor %}
@@ -14,7 +14,7 @@
 			{% for row in grid.data.data %}
 				<tr class="border-t even:bg-light">
 					{% for col in grid.columns %}
-						<td class="text-center p-4" data-rowcolkey="{{ col.key }}">
+						<td class="text-center p-4">
 							{{ col.value(row) }}
 						</td>
 					{% endfor %}

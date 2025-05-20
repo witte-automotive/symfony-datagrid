@@ -33,6 +33,11 @@ class SyDataGrid
         return $column;
     }
 
+    public function hasSearchable(): bool
+    {
+        return array_any($this->columns, fn($it) => $it->searchable);
+    }
+
     public function jsonPaginationData(): string
     {
         $array = json_decode(json_encode($this->data), true);
