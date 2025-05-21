@@ -7,5 +7,4 @@ enum ActionTypeEnum: string
     case EDIT = 'edit';
     case SHOW = 'show';
     case DELETE = 'delete';
-    case SORT = 'sort';
 }

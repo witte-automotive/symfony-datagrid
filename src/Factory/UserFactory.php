@@ -32,7 +32,8 @@ class UserFactory
         $dg->addAction(ActionTypeEnum::CREATE);
         $dg->addAction(ActionTypeEnum::EDIT);
         $dg->addAction(ActionTypeEnum::SHOW);
-        $dg->addAction(ActionTypeEnum::DELETE);
+
+        $dg->setSortable('position');
 
         return $dg;
     }

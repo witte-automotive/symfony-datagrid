@@ -5,7 +5,6 @@ class Column
 {
     public ColumnTypeEnum $type = ColumnTypeEnum::TEXT;
     public bool $searchable = false;
-    public bool $sortable = false;
     public mixed $callback = null;
     public function __construct(public string $key, public string $label)
     {

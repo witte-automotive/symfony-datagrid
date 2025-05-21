@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SyDataGrid
 {
-    public const EMPTY_PLACEHOLDER = '---';
+    public const string EMPTY_PLACEHOLDER = '---';
     /**
      * @var Column[]
      */
@@ -18,6 +18,7 @@ class SyDataGrid
     public array $actions = [];
     public Paginated $data;
     public string $resetUrl;
+    private null|string $sortableColumn = null;
 
     public array $perPageOptions = [
         10,
@@ -53,6 +54,16 @@ class SyDataGrid
     public function hasActions(): bool
     {
         return count($this->actions) !== 0;
+    }
+
+    public function setSortable(string $column)
+    {
+        $this->sortableColumn = $column;
+    }
+
+    public function getSortableColumn(): string|null
+    {
+        return $this->sortableColumn;
     }
 
     public function jsonPaginationData(): string

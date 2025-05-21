@@ -23,6 +23,9 @@ class User
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: false)]
     private \DateTimeInterface $createdAt;
 
+    #[ORM\Column(type: Types::INTEGER, options: ['default' => 0])]
+    private int $position = 0;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -66,5 +69,15 @@ class User
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function setPosition(int $position)
+    {
+        $this->position = $position;
+    }
+
+    public function getPosition(): int
+    {
+        return $this->position;
     }
 }

@@ -1,4 +1,5 @@
 import Ajax from "../Service/Ajax"
+import Sortable from 'sortablejs';
 
 interface IPaginated {
     visiblePages: number[];

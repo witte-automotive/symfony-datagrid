@@ -23,6 +23,9 @@
 							<th class="p-3 text-center w-24">Actions</th>
 						{% endif %}
 
+						{% if grid.getSortableColumn is not null %}
+							<th class="p-3 w-10"></th>
+						{% endif %}
 					</tr>
 				</thead>
 
@@ -41,24 +44,20 @@
 										{% for action in grid.actions %}
 											{% set type = action.type.value %}
 											{% if type == 'create' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-create {{ action.classes }}">
 													{{ ux_icon('create', { 'class': 'size-5' }) }}
 												</a>
 											{% elseif type == 'edit' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-edit {{ action.classes }}">
 													{{ ux_icon('edit', { 'class': 'size-5' }) }}
 												</a>
 											{% elseif type == 'show' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-show {{ action.classes }}">
 													{{ ux_icon('show', { 'class': 'size-5' }) }}
 												</a>
 											{% elseif type == 'delete' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-create delete{{ action.classes }}">
 													{{ ux_icon('delete', { 'class': 'size-5' }) }}
-												</a>
-											{% elseif type == 'sort' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
-													{{ ux_icon('sort', { 'class': 'size-5' }) }}
 												</a>
 											{% endif %}
 										{% endfor %}
@@ -66,14 +65,19 @@
 								</td>
 							{% endif %}
 
+							{% if grid.getSortableColumn is not null %}
+								<td>
+									{{ ux_icon('sort', { 'class': 'size-5 cursor-pointer' }) }}
+								</td>
+							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>
-			</table>
-		</div>
+			</tbody>
+		</table>
+	</div>
 
-		{% include "grid/pagination.html.twig" with {
+	{% include "grid/pagination.html.twig" with {
 		paginated: grid.data,
 	} %}
-	</div>
-</div>
+</div></div>
