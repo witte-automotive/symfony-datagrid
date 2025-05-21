@@ -52,9 +52,10 @@
 						<span class="px-4 font-bold">in</span>
 
 						<div class="w-full">
-							<select name="" id="" class="js-sdg-s-order-in px-3 py-2 !outline-none border rounded-md w-full">
+							{% set column = filters['order'] is defined and filters['order']|length > 0 ? filters['order']|keys|first : '' %}
+							<select class="js-sdg-s-order-in px-3 py-2 !outline-none border rounded-md w-full">
 								{% for col in grid.columns %}
-									<option value="{{col.key}}">{{col.label}}</option>
+									<option value="{{ col.key }}" {% if column == col.key %} selected {% endif %}>{{ col.label }}</option>
 								{% endfor %}
 							</select>
 						</div>
@@ -65,7 +66,7 @@
 
 		<div class="flex items-center gap-4 mt-4">
 			<button class="btn">Apply filters</button>
-			<button class="btn bg-gray-700 text-sm js-sdg-f-cancle-btn">Cancle</button>
+			<button type="button" class="btn bg-gray-700 text-sm js-sdg-f-cancle-btn">Cancle</button>
 		</div>
 	</form>
 </div>

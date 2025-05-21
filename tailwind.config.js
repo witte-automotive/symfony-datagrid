@@ -3,6 +3,9 @@ import plugin from "tailwindcss/plugin";
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ["./templates/**/*.{twig, js, ts}"],
+    safelist:[
+        "!bg-primary/20",
+    ],
     theme: {
         colors: {
             transparent: "transparent",

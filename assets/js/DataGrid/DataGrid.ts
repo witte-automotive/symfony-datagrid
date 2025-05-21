@@ -12,6 +12,7 @@ interface IPaginated {
         search?: { [key: string]: string }[];
         order?: { [column: string]: 'asc' | 'desc' };
     };
+    sorted: string[]
 }
 
 export default class DataGrid {
@@ -28,6 +29,7 @@ export default class DataGrid {
         this.url = container.dataset.resetUrl!;
         this.bindPaginationEvents();
         this.initFilters();
+        this.initSortable();
     }
 
     private bindPaginationEvents = (): void => {
@@ -115,17 +117,19 @@ export default class DataGrid {
         const orderDescSelect = container.querySelector<HTMLSelectElement>('.js-sdg-s-order-desc');
         const orderIn = container.querySelector<HTMLInputElement>('.js-sdg-s-order-in');
 
-        orderDescSelect?.addEventListener('change', () => {
-            const direction = orderDescSelect.value as 'asc' | 'desc';
+        const updateOrderFilter = () => {
+            const direction = orderDescSelect?.value as 'asc' | 'desc';
             const column = orderIn?.value;
-
             if (direction && column) {
                 this.pdata.filters = {
                     ...this.pdata.filters,
                     order: { [column]: direction }
                 };
             }
-        });
+        };
+
+        orderDescSelect?.addEventListener('change', updateOrderFilter);
+        orderIn?.addEventListener('change', updateOrderFilter);
 
         resetBtn?.addEventListener('click', () => {
             searchItemsContainer!.innerHTML = ''
@@ -183,4 +187,25 @@ export default class DataGrid {
             this.fetchPageData();
         });
     };
+
+    private initSortable = () => {
+        new Sortable(this.container.querySelector('tbody')!, {
+            animation: 150,
+            handle: '.js-sdg-sort-handle',
+            onEnd: async (evt) => {
+                const rows = evt.target.children;
+
+                const ids: string[] = Array.from(rows)
+                    .map(row => (row as HTMLElement).dataset.id)
+                    .filter((id): id is string => id !== undefined);
+
+                const updatedId = evt.item.dataset.id
+
+                this.pdata.sorted = ids;
+                await this.fetchPageData();
+                this.pdata.sorted = []
+                await this.fetchPageData();
+            },
+        });
+    }
 }

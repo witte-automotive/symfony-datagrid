@@ -19,15 +19,35 @@ class SyDataGridFactory
     public function refresh(SyDataGrid $grid, Request $request): array
     {
         $query = $request->query;
+        $alias = current($grid->dataSource->getAllAliases()) ?? 'f';
 
         $page = $query->getInt('page', 1);
         $perPage = $query->getInt('perPage', 10);
 
         $filters = $query->all('filters');
+        $sort = $query->all('sorted');
 
-        $alias = current($grid->dataSource->getAllAliases()) ?? 'f';
+        if (!empty($sort) && is_array($sort)) {
+            $em = $grid->dataSource->getEntityManager();
+            $entity = $grid->dataSource->getRootEntities()[0];
+
+            foreach ($sort as $position => $id) {
+                $em->createQueryBuilder()
+                    ->update($entity, $alias)
+                    ->set("$alias.{$grid->getSortableColumn()}", ':pos')
+                    ->where("$alias.id = :id")
+                    ->setParameter('pos', ++$position)
+                    ->setParameter('id', $id)
+                    ->getQuery()
+                    ->execute();
+            }
+
+            if (!empty($filters['order']) && is_array($filters['order'])) {
+                $filters['order'] = [$grid->getSortableColumn(), 'asc'];
+            }
+        }
+
         if (!empty($filters['search']) && is_array($filters['search'])) {
-
             foreach ($filters['search'] as $search) {
                 if (!is_array($search))
                     continue;
@@ -44,12 +64,12 @@ class SyDataGridFactory
         }
 
         if (!empty($filters['order']) && is_array($filters['order'])) {
-            $orderColumn = array_key_first($filters['order']);
-            $direction = strtolower($filters['order'][$orderColumn]);
+            $column = array_key_first($filters['order']);
+            $dir = $filters['order'][$column];
 
-            if (in_array($direction, ['asc', 'desc'], true)) {
+            if (in_array($dir, ['asc', 'desc'], true)) {
                 $grid->dataSource
-                    ->orderBy("$alias.$orderColumn", $direction);
+                    ->orderBy("$alias.$column", $dir);
             }
         }
 
@@ -68,4 +88,5 @@ class SyDataGridFactory
             ])
         ];
     }
+
 }

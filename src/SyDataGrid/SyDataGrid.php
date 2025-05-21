@@ -19,7 +19,8 @@ class SyDataGrid
     public Paginated $data;
     public string $resetUrl;
     private null|string $sortableColumn = null;
-
+    private null|string $primaryKey = null;
+    private array $defaultSort = [];
     public array $perPageOptions = [
         10,
         25,
@@ -37,6 +38,16 @@ class SyDataGrid
         $column = new Column($key, $label);
         $this->columns[] = $column;
         return $column;
+    }
+
+    public function setDefaultDataSource(string $column, string $dir)
+    {
+        $this->data->filters['order'] = [$column => $dir];
+    }
+
+    public function getDefaultSort(): array
+    {
+        return $this->defaultSort;
     }
 
     public function addAction(ActionTypeEnum $type): Action
@@ -61,8 +72,22 @@ class SyDataGrid
         $this->sortableColumn = $column;
     }
 
+    public function setPrimaryKey(string $key)
+    {
+        $this->primaryKey = $key;
+    }
+
+    public function getPrimaryKey(): string
+    {
+        return $this->primaryKey;
+    }
+
     public function getSortableColumn(): string|null
     {
+        if (!$this->primaryKey) {
+            throw new \Exception('To use sortable, you must define a primary key.');
+        }
+
         return $this->sortableColumn;
     }
 

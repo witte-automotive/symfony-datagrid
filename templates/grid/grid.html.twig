@@ -1,7 +1,7 @@
 <div class="js-sydatagrid-placeholder">
 	<div class="js-sydatagrid content-container bg-white shadow-md px-2 py-0" data-reset-url="{{grid.resetUrl}}" data-pagination-data='{{grid.jsonPaginationData}}'>
 
-		<div class="js-sydatagrid-f-display-btn absolute top-2 left-2 p-2 rounded-full border border-gray-400 z-10 cursor-pointer hover:opacity-70 anim">
+		<div class="js-sydatagrid-f-display-btn absolute top-2 left-2 p-2 rounded-full border bg-white opacity-50 hover:opacity-100 border-gray-400 z-10 cursor-pointer anim">
 			{{ux_icon('filter', {'class':'size-5'})}}
 		</div>
 
@@ -31,7 +31,7 @@
 
 				<tbody>
 					{% for row in grid.data.data %}
-						<tr class="border-t even:bg-light">
+						<tr class="border-t even:bg-light js-sdg-row" data-id="{{ attribute(row, grid.getPrimaryKey) }}">
 							{% for col in grid.columns %}
 								<td class="text-center p-4">
 									{{ col.value(row) }}
@@ -40,7 +40,7 @@
 
 							{% if grid.hasActions %}
 								<td class="px-3">
-									<div class="flex w-full gap-3 justify-center ">
+									<div class="flex w-full gap-3 justify-center">
 										{% for action in grid.actions %}
 											{% set type = action.type.value %}
 											{% if type == 'create' %}
@@ -67,7 +67,7 @@
 
 							{% if grid.getSortableColumn is not null %}
 								<td>
-									{{ ux_icon('sort', { 'class': 'size-5 cursor-pointer' }) }}
+									{{ ux_icon('sort', { 'class': 'js-sdg-sort-handle size-5 cursor-pointer hover:text-primary anim' }) }}
 								</td>
 							{% endif %}
 						</tr>

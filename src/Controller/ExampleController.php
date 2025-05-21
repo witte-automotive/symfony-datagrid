@@ -28,4 +28,10 @@ class ExampleController extends AbstractController
             'grid' => $dg
         ]);
     }
+
+    #[Route('/{id}', name: 'test')]
+    public function test()
+    {
+
+    }
 }

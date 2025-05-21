@@ -25,6 +25,6 @@ class Action
 
     public function link(mixed $row)
     {
-        return $this->callback !== null ? call_user_func($this->callback, $row) : '';
+        return $this->callback !== null ? call_user_func($this->callback, $row) : '#';
     }
 }

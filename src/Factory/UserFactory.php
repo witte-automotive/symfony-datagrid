@@ -19,17 +19,22 @@ class UserFactory
     public function createTable(): SyDataGrid
     {
         $dg = $this->gridFactory->create(
-            $this->em->getRepository(User::class)->createQueryBuilder('u'),
+            $this->em->getRepository(User::class)->createQueryBuilder('u')->orderBy('u.position', 'asc'),
             $this->urlGenerator->generate('example')
         );
+
+        $dg->setPrimaryKey('id');
+        $dg->setDefaultDataSource('position', 'asc');
 
         $dg->addColumn('id', 'Id');
         $dg->addColumn('name', 'Name')
             ->setSearchable(true);
 
         $dg->addColumn('type', 'Type');
+        $dg->addColumn('position', 'Position');
 
-        $dg->addAction(ActionTypeEnum::CREATE);
+        $dg->addAction(ActionTypeEnum::CREATE)
+            ->setCallback(fn($row) => $this->urlGenerator->generate('test', ['id' => $row->getId()]));
         $dg->addAction(ActionTypeEnum::EDIT);
         $dg->addAction(ActionTypeEnum::SHOW);
 
