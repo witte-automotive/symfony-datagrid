@@ -20,7 +20,7 @@
 						{% endfor %}
 
 						{% if grid.hasActions %}
-							<th class="p-3 text-center">Actions</th>
+							<th class="p-3 text-center w-24">Actions</th>
 						{% endif %}
 
 					</tr>
@@ -36,24 +36,33 @@
 							{% endfor %}
 
 							{% if grid.hasActions %}
-								<td>
-									{% for action in grid.actions %}
-										{% set type = action.type.value %}
-
-										{% if type == 'create' %}
-											<a href="{{ action.link(row) }}" class="text-green-500 {{ action.classes }}">
-												{{ ux_icon('create', { 'class': 'size-6' }) }}
-											</a>
-										{% elseif type == 'edit' %}
-											<a href="#" class="">Edit</a>
-										{% elseif type == 'show' %}
-											<a href="#" class="">Show</a>
-										{% elseif type == 'delete' %}
-											<a href="#" class="">Delete</a>
-										{% elseif type == 'sort' %}
-											<span class="">Sortable</span>
-										{% endif %}
-									{% endfor %}
+								<td class="px-3">
+									<div class="flex w-full gap-3 justify-center ">
+										{% for action in grid.actions %}
+											{% set type = action.type.value %}
+											{% if type == 'create' %}
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+													{{ ux_icon('create', { 'class': 'size-5' }) }}
+												</a>
+											{% elseif type == 'edit' %}
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+													{{ ux_icon('edit', { 'class': 'size-5' }) }}
+												</a>
+											{% elseif type == 'show' %}
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+													{{ ux_icon('show', { 'class': 'size-5' }) }}
+												</a>
+											{% elseif type == 'delete' %}
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+													{{ ux_icon('delete', { 'class': 'size-5' }) }}
+												</a>
+											{% elseif type == 'sort' %}
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim {{ action.classes }}">
+													{{ ux_icon('sort', { 'class': 'size-5' }) }}
+												</a>
+											{% endif %}
+										{% endfor %}
+									</div>
 								</td>
 							{% endif %}
 
