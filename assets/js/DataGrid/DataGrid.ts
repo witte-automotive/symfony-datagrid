@@ -126,13 +126,6 @@ export default class DataGrid {
             }
         });
 
-        if (this.pdata.filters.order && orderIn && orderDescSelect) {
-            const [column, direction] = Object.entries(this.pdata.filters.order)[0];
-
-            orderIn.value = column;
-            orderDescSelect.value = direction as 'asc' | 'desc';
-        }
-
         resetBtn?.addEventListener('click', () => {
             searchItemsContainer!.innerHTML = ''
             addSearchItem();

@@ -24,12 +24,12 @@
 					<div class="text-lg font-medium flex justify-between w-full">
 						<span>Seach</span>
 						<div class="flex gap-2">
-						<div class="js-sdg-f-s-btn border border-gray-200 flex justify-center items-center rounded-full size-6 cursor-pointer hover:text-primary">
-							{{ ux_icon('plus', {'class':'size-4 anim'}) }}
-						</div>
-						<div class="js-sdg-f-s-r-btn border border-gray-200 flex justify-center items-center rounded-full size-6 cursor-pointer hover:text-primary">
-							{{ ux_icon('reset', {'class':'size-4 anim'}) }}
-						</div>
+							<div class="js-sdg-f-s-btn border border-gray-200 flex justify-center items-center rounded-full size-6 cursor-pointer hover:text-primary">
+								{{ ux_icon('plus', {'class':'size-4 anim'}) }}
+							</div>
+							<div class="js-sdg-f-s-r-btn border border-gray-200 flex justify-center items-center rounded-full size-6 cursor-pointer hover:text-primary">
+								{{ ux_icon('reset', {'class':'size-4 anim'}) }}
+							</div>
 						</div>
 					</div>
 
@@ -40,10 +40,12 @@
 					<div class="text-lg font-medium block">Order</div>
 					<div class="flex w-full items-center">
 						<div class="w-full">
-							<select name="" id="" class="js-sdg-s-order-desc px-3 py-2 !outline-none border rounded-md w-full">
+							{% set decs = filters['order'] is defined ? filters['order']|first : '' %}
+
+							<select name="order" id="order" class="js-sdg-s-order-desc px-3 py-2 !outline-none border rounded-md w-full">
 								<option value="">-- None --</option>
-								<option value="asc">ASC</option>
-								<option value="desc">DESC</option>
+								<option value="asc" {% if decs == 'asc' %} selected {% endif %}>ASC</option>
+								<option value="desc" {% if decs == 'desc' %} selected {% endif %}>DESC</option>
 							</select>
 						</div>
 

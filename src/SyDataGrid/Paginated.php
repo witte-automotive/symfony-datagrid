@@ -52,7 +52,6 @@ class Paginated
             $this->perPage,
             $this->pageRange
         );
-
         $self->setFilters($this->filters);
 
         return $self;

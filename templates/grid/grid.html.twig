@@ -5,7 +5,10 @@
 			{{ux_icon('filter', {'class':'size-5'})}}
 		</div>
 
-		{% include "grid/filters.html.twig" %}
+		{% include "grid/filters.html.twig" with {
+			filters: grid.data.filters
+		} %}
+
 		<div class="w-full overflow-auto">
 			<table class="table w-full min-w-max">
 				<thead>
