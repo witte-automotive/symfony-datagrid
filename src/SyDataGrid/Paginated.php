@@ -5,6 +5,7 @@ class Paginated
 {
     public array $visiblePages = [];
     public int $totalPages;
+    public array $filters = [];
     public function __construct(
         public int $total,
         public int $page,
@@ -14,6 +15,11 @@ class Paginated
     ) {
         $this->visiblePages = $this->getVisiblePages();
         $this->totalPages = $this->getTotalPages();
+    }
+
+    public function setFilters(array $filters)
+    {
+        $this->filters = $filters;
     }
 
     public function getTotalPages(): int
@@ -40,11 +46,15 @@ class Paginated
 
     public function witnotData()
     {
-        return new self(
+        $self = new self(
             $this->total,
             $this->page,
             $this->perPage,
             $this->pageRange
         );
+
+        $self->setFilters($this->filters);
+
+        return $self;
     }
 }
