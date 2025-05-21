@@ -45,6 +45,11 @@ class SyDataGridFactory
             if (!empty($filters['order']) && is_array($filters['order'])) {
                 $filters['order'] = [$grid->getSortableColumn(), 'asc'];
             }
+
+            return [
+                'html' => '',
+                'pagination' => ''
+            ];
         }
 
         if (!empty($filters['search']) && is_array($filters['search'])) {
