@@ -14,10 +14,15 @@
 				<thead>
 					<tr>
 						{% for col in grid.columns %}
-							<th class="p-3 py-3 text-center">
+							<th class="p-3 text-center">
 								{{ col.label }}
 							</th>
 						{% endfor %}
+
+						{% if grid.hasActions %}
+							<th class="p-3 text-center">Actions</th>
+						{% endif %}
+
 					</tr>
 				</thead>
 
@@ -29,6 +34,29 @@
 									{{ col.value(row) }}
 								</td>
 							{% endfor %}
+
+							{% if grid.hasActions %}
+								<td>
+									{% for action in grid.actions %}
+										{% set type = action.type.value %}
+
+										{% if type == 'create' %}
+											<a href="{{ action.link(row) }}" class="text-green-500 {{ action.classes }}">
+												{{ ux_icon('create', { 'class': 'size-6' }) }}
+											</a>
+										{% elseif type == 'edit' %}
+											<a href="#" class="">Edit</a>
+										{% elseif type == 'show' %}
+											<a href="#" class="">Show</a>
+										{% elseif type == 'delete' %}
+											<a href="#" class="">Delete</a>
+										{% elseif type == 'sort' %}
+											<span class="">Sortable</span>
+										{% endif %}
+									{% endfor %}
+								</td>
+							{% endif %}
+
 						</tr>
 					{% endfor %}
 				</tbody>

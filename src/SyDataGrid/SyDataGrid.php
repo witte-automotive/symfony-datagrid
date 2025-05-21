@@ -11,6 +11,11 @@ class SyDataGrid
      * @var Column[]
      */
     public array $columns;
+
+    /**
+     * @var Action[]
+     */
+    public array $actions = [];
     public Paginated $data;
     public string $resetUrl;
 
@@ -33,9 +38,21 @@ class SyDataGrid
         return $column;
     }
 
+    public function addAction(ActionTypeEnum $type): Action
+    {
+        $action = new Action($type);
+        $this->actions[] = $action;
+        return $action;
+    }
+
     public function hasSearchable(): bool
     {
         return array_any($this->columns, fn($it) => $it->searchable);
+    }
+
+    public function hasActions(): bool
+    {
+        return count($this->actions) !== 0;
     }
 
     public function jsonPaginationData(): string

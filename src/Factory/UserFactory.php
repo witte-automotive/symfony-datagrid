@@ -2,6 +2,7 @@
 namespace App\Factory;
 
 use App\Entity\User;
+use App\SyDataGrid\ActionTypeEnum;
 use App\SyDataGrid\SyDataGrid;
 use App\SyDataGrid\SyDataGridFactory;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,8 +26,13 @@ class UserFactory
         $dg->addColumn('id', 'Id');
         $dg->addColumn('name', 'Name')
             ->setSearchable(true);
-            
+
         $dg->addColumn('type', 'Type');
+
+        $dg->addAction(ActionTypeEnum::CREATE);
+        $dg->addAction(ActionTypeEnum::EDIT);
+        $dg->addAction(ActionTypeEnum::SHOW);
+        $dg->addAction(ActionTypeEnum::DELETE);
 
         return $dg;
     }
