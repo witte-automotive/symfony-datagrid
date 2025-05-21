@@ -30,6 +30,7 @@ export default class DataGrid {
         this.bindPaginationEvents();
         this.initFilters();
         this.initSortable();
+        this.toggleLoader(false);
     }
 
     private bindPaginationEvents = (): void => {
@@ -55,6 +56,16 @@ export default class DataGrid {
         addClickListener('.js-sdg-p-lp', () => this.updateCurrentPage(this.pdata.totalPages));
 
         this.initPerPageChange();
+    }
+
+    private toggleLoader = (on: boolean = true) => {
+        if (on) {
+            this.container.querySelector('.js-sydatagrid-loader')!.classList.remove('!hidden');
+            this.container.querySelector('.js-sydatagrid-table-container')!.classList.add('hidden');
+        } else {
+            this.container.querySelector('.js-sydatagrid-loader')!.classList.add('!hidden');
+            this.container.querySelector('.js-sydatagrid-table-container')!.classList.remove('hidden');
+        }
     }
 
     private initPerPageChange = () => {
@@ -84,9 +95,18 @@ export default class DataGrid {
             });
 
             this.container.setAttribute('data-pagination-data', JSON.stringify(response.pagination));
-            this.parent.innerHTML = response.html;
 
-            this.init(this.parent.querySelector('.js-sydatagrid')!);
+            const parsedDoc = new DOMParser().parseFromString(response.html, 'text/html');
+            const newGrid = parsedDoc.querySelector('.js-sydatagrid');
+
+            if (newGrid) {
+                const oldGrid = this.parent.querySelector('.js-sydatagrid');
+                if (oldGrid) {
+                    this.parent.replaceChild(newGrid, oldGrid);
+                }
+
+                this.init(newGrid as HTMLElement);
+            }
         } catch (error) {
             console.error("Pagination request failed:", error);
         }
@@ -202,9 +222,11 @@ export default class DataGrid {
                 const updatedId = evt.item.dataset.id
 
                 this.pdata.sorted = ids;
+                this.toggleLoader(true)
                 await this.fetchPageData();
                 this.pdata.sorted = []
                 await this.fetchPageData();
+                this.toggleLoader(false)
             },
         });
     }

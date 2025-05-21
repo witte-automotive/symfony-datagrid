@@ -5,6 +5,7 @@ export default {
     content: ["./templates/**/*.{twig, js, ts}"],
     safelist:[
         "!bg-primary/20",
+        "!hidden"
     ],
     theme: {
         colors: {
