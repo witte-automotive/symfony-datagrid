@@ -31,7 +31,7 @@
 
 				<tbody>
 					{% for row in grid.data.data %}
-						<tr class="border-t even:bg-light js-sdg-row" data-id="{{ attribute(row, grid.getPrimaryKey) }}">
+						<tr class="border-t even:bg-light js-sdg-row" {% if grid.getPrimaryKey is not null %} data-id="{{ attribute(row, grid.getPrimaryKey) }}" {% endif %}>
 							{% for col in grid.columns %}
 								<td class="text-center p-4">
 									{{ col.value(row) }}

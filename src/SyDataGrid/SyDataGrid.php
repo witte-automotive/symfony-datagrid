@@ -69,6 +69,9 @@ class SyDataGrid
 
     public function setSortable(string $column)
     {
+        if (!$this->primaryKey) {
+            throw new \Exception('To use sortable, you must define a primary key.');
+        }
         $this->sortableColumn = $column;
     }
 
@@ -77,17 +80,13 @@ class SyDataGrid
         $this->primaryKey = $key;
     }
 
-    public function getPrimaryKey(): string
+    public function getPrimaryKey(): string|null
     {
         return $this->primaryKey;
     }
 
     public function getSortableColumn(): string|null
     {
-        if (!$this->primaryKey) {
-            throw new \Exception('To use sortable, you must define a primary key.');
-        }
-
         return $this->sortableColumn;
     }
 

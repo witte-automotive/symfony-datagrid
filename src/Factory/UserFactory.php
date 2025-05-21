@@ -33,10 +33,6 @@ class UserFactory
         $dg->addColumn('type', 'Type');
         $dg->addColumn('position', 'Position');
 
-        $dg->addAction(ActionTypeEnum::CREATE)
-            ->setCallback(fn($row) => $this->urlGenerator->generate('test', ['id' => $row->getId()]));
-        $dg->addAction(ActionTypeEnum::EDIT);
-        $dg->addAction(ActionTypeEnum::SHOW);
 
         $dg->setSortable('position');
 
