@@ -15,12 +15,8 @@
         "php": ">=8.2",
         "doctrine/orm": "^3.3.3",
         "symfony/asset": "7.2.*",
-        "symfony/console": "7.2.*",
         "symfony/dependency-injection": "7.2.*",
-        "symfony/dotenv": "7.2.*",
-        "symfony/flex": "^2.6",
         "symfony/framework-bundle": "7.2.*",
-        "symfony/runtime": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
         "symfony/ux-icons": "^2.25",
         "symfony/ux-twig-component": "^2.25.2",
@@ -46,9 +42,5 @@
         }
     },
     "config": {
-        "allow-plugins": {
-            "symfony/flex": true,
-            "symfony/runtime": true
-        }
     }
 }
