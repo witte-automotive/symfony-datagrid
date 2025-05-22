@@ -87,6 +87,7 @@ export default class DataGrid {
             const { totalPages, visiblePages, ...rest } = this.pdata;
             this.pdata = rest as any;
 
+            this.toggleLoader(true)
             const response = await Ajax.get<{ pagination: IPaginated } & { html: string }>(this.url, {
                 params: this.pdata,
                 headers: {
@@ -109,6 +110,8 @@ export default class DataGrid {
             }
         } catch (error) {
             console.error("Pagination request failed:", error);
+        } finally {
+            this.toggleLoader(false)
         }
     }
 
@@ -219,14 +222,10 @@ export default class DataGrid {
                     .map(row => (row as HTMLElement).dataset.id)
                     .filter((id): id is string => id !== undefined);
 
-                const updatedId = evt.item.dataset.id
-
                 this.pdata.sorted = ids;
-                this.toggleLoader(true)
                 await this.fetchPageData();
                 this.pdata.sorted = []
                 await this.fetchPageData();
-                this.toggleLoader(false)
             },
         });
     }
