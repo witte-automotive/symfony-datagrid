@@ -1,6 +1,6 @@
 services:
-  SyDataGrid\:
-    resource: "../../*"
+  SyDataGrid\Factory\SyDataGridFactory:
     autowire: true
     autoconfigure: true
     public: true
+
