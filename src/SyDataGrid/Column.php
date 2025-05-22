@@ -9,6 +9,7 @@ class Column
     public function __construct(public string $key, public string $label)
     {
     }
+    
     public function setSearchable(bool $value = true): self
     {
         $this->searchable = $value;
