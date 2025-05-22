@@ -3,6 +3,3 @@ services:
     autowire: true
     autoconfigure: true
     public: true
-
-  SyDataGrid\Twig\SyDataGridExtenstion:
-    tags: ["twig.extension"]
