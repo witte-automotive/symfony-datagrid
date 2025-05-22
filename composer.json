@@ -2,7 +2,6 @@
     "name": "witte/sydatagrid",
     "description": "Symfony DataGrid",
     "type": "symfony-bundle",
-    "version": "1.0.1",
     "license": "proprietary",
      "authors": [
         {
