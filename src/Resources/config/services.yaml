@@ -1,0 +1,6 @@
+services:
+  SyDataGrid\SyDataGrid\:
+    resource: "../../*"
+    autowire: true
+    autoconfigure: true
+    public: true
