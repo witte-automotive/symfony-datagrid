@@ -3,7 +3,7 @@ namespace App\SyDataGrid;
 class Action
 {
     public ActionTypeEnum $type;
-    public mixed $callback = null;
+    public mixed $linkCallback = null;
     public string $classes = '';
     public function __construct(ActionTypeEnum $type)
     {
@@ -11,11 +11,11 @@ class Action
     }
 
     /**
-     * @param callable(mixed) $callback
+     * @param callable $callback
      */
-    public function setCallback($callback)
+    public function setLinkCallback($callback)
     {
-        $this->callback = $callback;
+        $this->linkCallback = $callback;
     }
 
     public function setClasses(string $classes)
@@ -25,6 +25,6 @@ class Action
 
     public function link(mixed $row)
     {
-        return $this->callback !== null ? call_user_func($this->callback, $row) : '#';
+        return $this->linkCallback !== null ? call_user_func($this->linkCallback, $row) : '#';
     }
 }
