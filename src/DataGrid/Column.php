@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace SyDataGrid\DataGrid;
 
 use SyDataGrid\Enum\ColumnTypeEnum;
 use SyDataGrid\Service\SyDataGridService;

@@ -2,10 +2,10 @@
 namespace SyDataGrid\Service;
 
 use Doctrine\ORM\QueryBuilder;
+use SyDataGrid\DataGrid\Column;
+use SyDataGrid\DataGrid\SyDataGrid;
 use SyDataGrid\DTO\Paginated;
 use SyDataGrid\Enum\ColumnTypeEnum;
-use SyDataGrid\SyDataGrid\Column;
-use SyDataGrid\SyDataGrid\SyDataGrid;
 
 final readonly class SyDataGridService
 {

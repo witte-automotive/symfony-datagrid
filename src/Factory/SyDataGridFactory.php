@@ -2,8 +2,8 @@
 namespace SyDataGrid\Factory;
 
 use Doctrine\ORM\QueryBuilder;
+use SyDataGrid\DataGrid\SyDataGrid;
 use SyDataGrid\Service\PaginationService;
-use SyDataGrid\SyDataGrid\SyDataGrid;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 

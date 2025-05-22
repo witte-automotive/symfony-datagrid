@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace SyDataGrid\DataGrid;
 
 use Doctrine\ORM\QueryBuilder;
 use SyDataGrid\DataGrid\Action;
