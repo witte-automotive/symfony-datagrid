@@ -1,0 +1,6 @@
+twig:
+  default_path: "%kernel.project_dir%/src/Resources/view"
+  paths:
+    "%kernel.project_dir%/src/Resources/assets/js": js
+    "%kernel.project_dir%/src/Resources/assets/styles": css
+    "%kernel.project_dir%/src/Resources/views": twig
