@@ -1,6 +1,9 @@
 <?php
 namespace SyDataGrid\SyDataGrid;
 
+use SyDataGrid\Enum\ColumnTypeEnum;
+use SyDataGrid\Service\SyDataGridService;
+
 class Column
 {
     public ColumnTypeEnum $type = ColumnTypeEnum::TEXT;
@@ -18,7 +21,7 @@ class Column
 
     public function value($row): string
     {
-        $val = Service::resolveValue($this, $row);
+        $val = SyDataGridService::resolveValue($this, $row);
         return $val;
     }
 }

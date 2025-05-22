@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace SyDataGrid\Enum;
 
 enum ActionTypeEnum: string
 {

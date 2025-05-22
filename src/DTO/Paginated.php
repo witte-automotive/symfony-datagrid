@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace SyDataGrid\DTO;
 
 class Paginated
 {

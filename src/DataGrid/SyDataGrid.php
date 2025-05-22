@@ -2,7 +2,10 @@
 namespace SyDataGrid\SyDataGrid;
 
 use Doctrine\ORM\QueryBuilder;
-
+use SyDataGrid\DataGrid\Action;
+use SyDataGrid\DTO\Paginated;
+use SyDataGrid\Enum\ActionTypeEnum;
+use SyDataGrid\Service\SyDataGridService;
 class SyDataGrid
 {
     public const EMPTY_PLACEHOLDER = '---';
@@ -29,7 +32,7 @@ class SyDataGrid
     public function __construct(public QueryBuilder $dataSource, string $resetUrl)
     {
         $this->resetUrl = $resetUrl;
-        $this->data = Service::transformData($dataSource);
+        $this->data = SyDataGridService::transformData($dataSource);
     }
 
     public function addColumn(string $key, string $label): Column

@@ -1,9 +1,13 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace SyDataGrid\Service;
 
 use Doctrine\ORM\QueryBuilder;
+use SyDataGrid\DTO\Paginated;
+use SyDataGrid\Enum\ColumnTypeEnum;
+use SyDataGrid\SyDataGrid\Column;
+use SyDataGrid\SyDataGrid\SyDataGrid;
 
-final readonly class Service
+final readonly class SyDataGridService
 {
     public static function transformData(QueryBuilder $dataSource): Paginated
     {

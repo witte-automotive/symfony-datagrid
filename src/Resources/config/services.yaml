@@ -1,5 +1,5 @@
 services:
-  SyDataGrid\SyDataGrid\:
+  SyDataGrid\:
     resource: "../../*"
     autowire: true
     autoconfigure: true
