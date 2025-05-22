@@ -1,5 +1,0 @@
-paths:
-  "%kernel.project_dir%/templates/sy_data_grid": SyDataGrid
-
-globals:
-  sy_grid_version: "1.0"
