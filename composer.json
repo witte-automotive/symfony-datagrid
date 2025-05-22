@@ -2,7 +2,7 @@
     "name": "witte/sydatagrid",
     "description": "Symfony DataGrid",
     "type": "library",
-    "license": "WITTE",
+    "license": "proprietary",
      "authors": [
         {
             "name": "Oleg Kuzmenko",
@@ -15,20 +15,20 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/dbal": "^3",
+        "doctrine/dbal": "^3.9.4",
         "doctrine/doctrine-bundle": "^2.14",
-        "doctrine/doctrine-migrations-bundle": "^3.4",
-        "doctrine/orm": "^3.3",
+        "doctrine/doctrine-migrations-bundle": "^3.4.2",
+        "doctrine/orm": "^3.3.3",
         "pentatrion/vite-bundle": "^8.1",
         "symfony/asset": "7.2.*",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
-        "symfony/flex": "^2",
+        "symfony/flex": "^2.6",
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
         "symfony/ux-icons": "^2.25",
-        "symfony/ux-twig-component": "^2.25",
+        "symfony/ux-twig-component": "^2.25.2",
         "symfony/yaml": "7.2.*"
     },
     "config": {
@@ -82,6 +82,6 @@
         }
     },
     "require-dev": {
-        "fakerphp/faker": "^1.24"
+        "fakerphp/faker": "^1.24.1"
     }
 }
