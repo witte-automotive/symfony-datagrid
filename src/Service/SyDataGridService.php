@@ -59,7 +59,8 @@ final readonly class SyDataGridService
             }
         }
 
-        if (!is_string($val)) {
+
+        if (!is_string($val) && $val !== null && !($val instanceof \Stringable)) {
             throw new Exception("Cannot resolve value: missing type setting for non-string column with key \"{$column->type->value}\".");
         }
 
