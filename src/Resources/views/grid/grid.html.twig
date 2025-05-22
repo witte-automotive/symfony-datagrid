@@ -10,7 +10,7 @@
 			{{ux_icon('filter', {'class':'size-5'})}}
 		</div>
 
-		{% include "grid/filters.html.twig" with {
+		{% include "@SyDataGrid/grid/filters.html.twig" with {
 			filters: grid.data.filters
 		} %}
 
@@ -82,7 +82,7 @@
 		</table>
 	</div>
 
-	{% include "grid/pagination.html.twig" with {
+	{% include "@SyDataGrid/grid/pagination.html.twig" with {
 		paginated: grid.data,
 	} %}
 </div></div>

@@ -41,7 +41,7 @@ class UserFactory
 namespace SyDataGrid\Controller;
 
 use SyDataGrid\Factory\UserFactory;
-use SyDataGrid\SyDataGrid\SyDataGridFactory;
+use SyDataGrid\Factory\SyDataGridFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
