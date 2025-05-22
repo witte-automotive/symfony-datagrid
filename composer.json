@@ -13,14 +13,14 @@
     "prefer-stable": true,
     "require": {
         "php": ">=8.2",
-        "doctrine/orm": "^3.3.3",
-        "symfony/asset": "7.2.*",
-        "symfony/dependency-injection": "7.2.*",
-        "symfony/framework-bundle": "7.2.*",
-        "symfony/twig-bundle": "7.2.*",
+        "doctrine/orm": "^2.0 || ^3.0",
+        "symfony/asset": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+        "symfony/dependency-injection": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+        "symfony/framework-bundle": "^4.4 || ^5.0 || ^6.0 || ^7.0",
+        "symfony/twig-bundle": "^4.4 || ^5.0 || ^6.0 || ^7.0",
         "symfony/ux-icons": "^2.25",
-        "symfony/ux-twig-component": "^2.25.2",
-        "symfony/yaml": "7.2.*"
+        "symfony/ux-twig-component": "^2.0",
+        "symfony/yaml": "^4.4 || ^5.0 || ^6.0 || ^7.0"
     },
     "autoload": {
         "psr-4": {
@@ -38,7 +38,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.2.*"
+            "require": "^4.4 || ^5.0 || ^6.0 || ^7.0"
         }
     },
     "config": {
