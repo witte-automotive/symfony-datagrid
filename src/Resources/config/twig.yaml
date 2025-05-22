@@ -1,6 +1,5 @@
-twig:
-  default_path: "%kernel.project_dir%/src/Resources/view"
-  paths:
-    "%kernel.project_dir%/src/Resources/assets/js": js
-    "%kernel.project_dir%/src/Resources/assets/styles": css
-    "%kernel.project_dir%/src/Resources/views": twig
+paths:
+  "%kernel.project_dir%/templates/sy_data_grid": SyDataGrid
+
+globals:
+  sy_grid_version: "1.0"
