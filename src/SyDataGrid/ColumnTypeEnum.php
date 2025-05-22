@@ -1,5 +1,5 @@
 <?php
-namespace App\SyDataGrid;
+namespace SyDataGrid\SyDataGrid;
 enum ColumnTypeEnum: string
 {
     case TEXT = 'text';

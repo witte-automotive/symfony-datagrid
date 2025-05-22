@@ -1,8 +1,8 @@
 <?php
-namespace App\Controller;
+namespace SyDataGrid\Controller;
 
-use App\Factory\UserFactory;
-use App\SyDataGrid\SyDataGridFactory;
+use SyDataGrid\Factory\UserFactory;
+use SyDataGrid\SyDataGrid\SyDataGridFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

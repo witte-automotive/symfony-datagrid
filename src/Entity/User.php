@@ -1,7 +1,7 @@
 <?php
-namespace App\Entity;
+namespace SyDataGrid\Entity;
 
-use App\Repository\UserRepository;
+use SyDataGrid\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;

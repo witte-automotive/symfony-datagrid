@@ -1,5 +1,5 @@
 <?php
-namespace App\SyDataGrid;
+namespace SyDataGrid\SyDataGrid;
 
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 

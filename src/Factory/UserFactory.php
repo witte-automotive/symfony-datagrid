@@ -1,10 +1,10 @@
 <?php
-namespace App\Factory;
+namespace SyDataGrid\Factory;
 
-use App\Entity\User;
-use App\SyDataGrid\ActionTypeEnum;
-use App\SyDataGrid\SyDataGrid;
-use App\SyDataGrid\SyDataGridFactory;
+use SyDataGrid\Entity\User;
+use SyDataGrid\SyDataGrid\ActionTypeEnum;
+use SyDataGrid\SyDataGrid\SyDataGrid;
+use SyDataGrid\SyDataGrid\SyDataGridFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
