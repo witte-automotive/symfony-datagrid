@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SyDataGrid
 {
-    public const string EMPTY_PLACEHOLDER = '---';
+    public const EMPTY_PLACEHOLDER = '---';
     /**
      * @var Column[]
      */
@@ -55,11 +55,6 @@ class SyDataGrid
         $action = new Action($type);
         $this->actions[] = $action;
         return $action;
-    }
-
-    public function hasSearchable(): bool
-    {
-        return array_any($this->columns, fn($it) => $it->searchable);
     }
 
     public function hasActions(): bool
