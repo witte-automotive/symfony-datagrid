@@ -2,6 +2,7 @@
 namespace SyDataGrid\Service;
 
 use Doctrine\ORM\QueryBuilder;
+use Exception;
 use SyDataGrid\DataGrid\Column;
 use SyDataGrid\DataGrid\SyDataGrid;
 use SyDataGrid\DTO\Paginated;
@@ -58,7 +59,11 @@ final readonly class SyDataGridService
             }
         }
 
-        if ($val === null || strlen($val) === 0) {
+        if (!is_string($val)) {
+            throw new Exception("Cannot resolve value: missing type setting for non-string column with key \"{$column->type->value}\".");
+        }
+
+        if ($val === null || (is_string($val) && strlen($val)) === 0) {
             $val = SyDataGrid::EMPTY_PLACEHOLDER;
         }
 

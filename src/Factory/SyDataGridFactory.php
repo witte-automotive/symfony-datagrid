@@ -90,7 +90,7 @@ class SyDataGridFactory
 
         return [
             'pagination' => $grid->data->witnotData(),
-            'html' => $this->twig->render('grid/grid.html.twig', [
+            'html' => $this->twig->render('@SyDataGrid/grid/grid.html.twig', [
                 'grid' => $grid
             ])
         ];
