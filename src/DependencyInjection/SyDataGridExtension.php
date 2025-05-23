@@ -17,11 +17,5 @@ class SyDataGridExtension extends Extension
             $container->getDefinition('twig.loader')
                 ->addMethodCall('addPath', [__DIR__ . '/../Resources/views', 'SyDataGrid']);
         }
-
-        $container->getParameterBag()->add([
-            'sy_datagrid.asset_paths' => [
-                __DIR__ . '/../Resources/assets',
-            ]
-        ]);
     }
 }
