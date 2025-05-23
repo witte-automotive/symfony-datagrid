@@ -13,3 +13,4 @@
 /public/build/
 ###< pentatrion/vite-bundle ###
 /.vscode/*
+/.vite/*
