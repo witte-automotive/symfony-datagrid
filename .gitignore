@@ -14,3 +14,5 @@
 /public/build/
 ###< pentatrion/vite-bundle ###
 /.vscode/*
+
+/assets/*
