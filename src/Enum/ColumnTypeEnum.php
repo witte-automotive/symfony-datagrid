@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\Enum;
+namespace Witte\Datagrid\Enum;
 enum ColumnTypeEnum: string
 {
     case TEXT = 'text';

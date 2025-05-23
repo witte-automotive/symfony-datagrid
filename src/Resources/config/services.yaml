@@ -1,5 +1,5 @@
 services:
-  SyDataGrid\Factory\SyDataGridFactory:
+  Witte\Datagrid\Factory\SyDataGridFactory:
     autowire: true
     autoconfigure: true
     public: true

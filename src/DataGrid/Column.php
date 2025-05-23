@@ -1,8 +1,8 @@
 <?php
-namespace SyDataGrid\DataGrid;
+namespace Witte\Datagrid\DataGrid;
 
-use SyDataGrid\Enum\ColumnTypeEnum;
-use SyDataGrid\Service\SyDataGridService;
+use Witte\Datagrid\Enum\ColumnTypeEnum;
+use Witte\Datagrid\Service\SyDataGridService;
 
 class Column
 {

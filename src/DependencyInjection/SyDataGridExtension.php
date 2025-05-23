@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\DependencyInjection;
+namespace Witte\Datagrid\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -19,7 +19,7 @@ class SyDataGridExtension extends Extension
         }
 
         $container->getParameterBag()->add([
-            'my_alert.asset_paths' => [
+            'sy_datagrid.asset_paths' => [
                 __DIR__ . '/../Resources/assets',
             ]
         ]);

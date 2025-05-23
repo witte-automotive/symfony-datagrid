@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SyDataGrid\\": "src/"
+            "Witte\\SyDatagrid\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SyDataGrid\\Tests\\": "tests/"
+            "Witte\\SyDatagrid\\Tests\\": "tests/"
         }
     },
     "conflict": {

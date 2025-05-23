@@ -1,11 +1,11 @@
 <?php
-namespace SyDataGrid\DataGrid;
+namespace Witte\Datagrid\DataGrid;
 
 use Doctrine\ORM\QueryBuilder;
-use SyDataGrid\DataGrid\Action;
-use SyDataGrid\DTO\Paginated;
-use SyDataGrid\Enum\ActionTypeEnum;
-use SyDataGrid\Service\SyDataGridService;
+use Witte\Datagrid\DataGrid\Action;
+use Witte\Datagrid\DTO\Paginated;
+use Witte\Datagrid\Enum\ActionTypeEnum;
+use Witte\Datagrid\Service\SyDataGridService;
 class SyDataGrid
 {
     public const EMPTY_PLACEHOLDER = '---';

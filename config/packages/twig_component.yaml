@@ -2,4 +2,4 @@ twig_component:
     anonymous_template_directory: 'components/'
     defaults:
         # Namespace & directory for components
-        SyDataGrid\Twig\Components\: 'components/'
+        Witte\Datagrid\Twig\Components\: 'components/'

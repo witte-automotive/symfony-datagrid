@@ -3,11 +3,11 @@
 ### User factory
 
 ```php
-namespace SyDataGrid\Factory;
+namespace Witte\Datagrid\Factory;
 
-use SyDataGrid\Entity\User;
-use SyDataGrid\SyDataGrid\SyDataGrid;
-use SyDataGrid\SyDataGrid\SyDataGridFactory;
+use Witte\Datagrid\Entity\User;
+use Witte\Datagrid\Witte\Datagrid\SyDataGrid;
+use Witte\Datagrid\Witte\Datagrid\SyDataGridFactory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -38,10 +38,10 @@ class UserFactory
 ### Controller
 
 ```php
-namespace SyDataGrid\Controller;
+namespace Witte\Datagrid\Controller;
 
-use SyDataGrid\Factory\UserFactory;
-use SyDataGrid\Factory\SyDataGridFactory;
+use Witte\Datagrid\Factory\UserFactory;
+use Witte\Datagrid\Factory\SyDataGridFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

@@ -1,12 +1,12 @@
 <?php
-namespace SyDataGrid\Service;
+namespace Witte\Datagrid\Service;
 
 use Doctrine\ORM\QueryBuilder;
 use Exception;
-use SyDataGrid\DataGrid\Column;
-use SyDataGrid\DataGrid\SyDataGrid;
-use SyDataGrid\DTO\Paginated;
-use SyDataGrid\Enum\ColumnTypeEnum;
+use Witte\Datagrid\DataGrid\Column;
+use Witte\Datagrid\DataGrid\SyDataGrid;
+use Witte\Datagrid\DTO\Paginated;
+use Witte\Datagrid\Enum\ColumnTypeEnum;
 
 final readonly class SyDataGridService
 {
@@ -53,7 +53,7 @@ final readonly class SyDataGridService
                     if ($column->type === ColumnTypeEnum::DATETIME) {
                         $val = $date->format('d.m.Y H:i:s');
                     }
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $val = null;
                 }
             }
@@ -64,7 +64,7 @@ final readonly class SyDataGridService
             throw new Exception("Cannot resolve value: missing type setting for non-string column with key \"{$column->type->value}\".");
         }
 
-        if ($val === null || (is_string($val) && strlen($val)) === 0) {
+        if ($val === null || (is_string($val) && strlen($val) === 0)) {
             $val = SyDataGrid::EMPTY_PLACEHOLDER;
         }
 
