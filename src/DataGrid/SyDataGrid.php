@@ -41,7 +41,6 @@ class SyDataGrid
         $this->columns[] = $column;
         return $column;
     }
-
     public function setDefaultOrder(string $column, string $dir)
     {
         $this->data->filters['order'] = [$column => $dir];
@@ -80,6 +79,11 @@ class SyDataGrid
     public function getSortableColumnName(): string|null
     {
         return $this->sortableColumn;
+    }
+
+    public function hasSearchableColumn(): bool
+    {
+        return count(array_filter($this->columns, fn(Column $it): bool => $it->isSearchable())) > 0;
     }
 
     public function jsonPaginatedData(): string

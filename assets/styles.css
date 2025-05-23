@@ -6,7 +6,8 @@ body {
   @apply !bg-[#f2f2f2] text-dark;
 }
 
-input {
+input,
+select {
   outline: none;
 }
 

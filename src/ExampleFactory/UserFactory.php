@@ -5,6 +5,8 @@ use Witte\SyDatagrid\DataGrid\SyDataGrid;
 use Witte\SyDatagrid\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Witte\SyDatagrid\Enum\ActionTypeEnum;
+use Witte\SyDatagrid\Enum\SearchableColumnEnum;
 use Witte\SyDatagrid\Factory\SyDataGridFactory;
 
 class UserFactory
@@ -25,13 +27,22 @@ class UserFactory
         $dg->setPrimaryKey('id');
         $dg->setDefaultOrder('position', 'asc');
 
-        $dg->addColumn('id', 'Id');
-        $dg->addColumn('name', 'Name')
-            ->setSearchable(true);
+        $dg->addColumn('id', 'Id')->setSearchable();
 
-        $dg->addColumn('type', 'Type');
+        $dg->addColumn('name', 'Name')
+            ->setSearchable();
+
+        $dg->addColumn('type', 'Type')
+            ->setSearchable(SearchableColumnEnum::OPTIONS_SELECT, [
+                'options' => [
+                    0 => 'Coby',
+                    1 => 'Alphonso'
+                ]
+            ]);
+
         $dg->addColumn('position', 'Position');
 
+        $dg->addAction(ActionTypeEnum::SHOW);
 
         $dg->setSortable('position');
 
