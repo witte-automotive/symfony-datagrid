@@ -12,7 +12,7 @@ class SyDataGridFactory
     public function __construct(private Environment $twig)
     {
     }
-
+    
     public function create(QueryBuilder $dataSource, string $resetUrl): SyDataGrid
     {
         return new SyDataGrid($dataSource, $resetUrl);
