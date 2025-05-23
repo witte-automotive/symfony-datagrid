@@ -1,5 +1,5 @@
 <?php
-namespace Witte\Datagrid\Enum;
+namespace Witte\SyDatagrid\Enum;
 
 enum ActionTypeEnum: string
 {

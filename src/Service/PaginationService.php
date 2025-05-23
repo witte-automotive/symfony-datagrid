@@ -1,8 +1,8 @@
 <?php
-namespace Witte\Datagrid\Service;
+namespace Witte\SyDatagrid\Service;
 
 use Doctrine\ORM\QueryBuilder;
-use Witte\Datagrid\DTO\Paginated;
+use Witte\SyDatagrid\DTO\Paginated;
 
 class PaginationService
 {

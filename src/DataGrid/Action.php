@@ -1,7 +1,7 @@
 <?php
-namespace Witte\Datagrid\DataGrid;
+namespace Witte\SyDatagrid\DataGrid;
 
-use Witte\Datagrid\Enum\ActionTypeEnum;
+use Witte\SyDatagrid\Enum\ActionTypeEnum;
 class Action
 {
     public ActionTypeEnum $type;

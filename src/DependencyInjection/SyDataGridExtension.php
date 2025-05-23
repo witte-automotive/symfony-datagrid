@@ -1,5 +1,5 @@
 <?php
-namespace Witte\Datagrid\DependencyInjection;
+namespace Witte\SyDatagrid\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;

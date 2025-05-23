@@ -1,12 +1,12 @@
 <?php
-namespace Witte\Datagrid\Service;
+namespace Witte\SyDatagrid\Service;
 
 use Doctrine\ORM\QueryBuilder;
 use Exception;
-use Witte\Datagrid\DataGrid\Column;
-use Witte\Datagrid\DataGrid\SyDataGrid;
-use Witte\Datagrid\DTO\Paginated;
-use Witte\Datagrid\Enum\ColumnTypeEnum;
+use Witte\SyDatagrid\DataGrid\Column;
+use Witte\SyDatagrid\DataGrid\SyDataGrid;
+use Witte\SyDatagrid\DTO\Paginated;
+use Witte\SyDatagrid\Enum\ColumnTypeEnum;
 
 final readonly class SyDataGridService
 {

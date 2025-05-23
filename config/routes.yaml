@@ -1,5 +1,5 @@
 controllers:
     resource:
         path: ../src/Controller/
-        namespace: Witte\Datagrid\Controller
+        namespace: Witte\SyDatagrid\\Controller
     type: attribute

@@ -1,5 +1,5 @@
 <?php
-namespace Witte\Datagrid\DTO;
+namespace Witte\SyDatagrid\DTO;
 
 class Paginated
 {
