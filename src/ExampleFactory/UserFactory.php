@@ -1,11 +1,11 @@
 <?php
-namespace SyDataGrid\Factory;
+namespace Witte\SyDatagrid\ExampleFactory;
 
-use SyDataGrid\Entity\User;
-use SyDataGrid\SyDataGrid\SyDataGrid;
-use SyDataGrid\SyDataGrid\SyDataGridFactory;
+use Witte\SyDatagrid\DataGrid\SyDataGrid;
+use Witte\SyDatagrid\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Witte\SyDatagrid\Factory\SyDataGridFactory;
 
 class UserFactory
 {
@@ -23,7 +23,7 @@ class UserFactory
         );
 
         $dg->setPrimaryKey('id');
-        $dg->setDefaultDataSource('position', 'asc');
+        $dg->setDefaultOrder('position', 'asc');
 
         $dg->addColumn('id', 'Id');
         $dg->addColumn('name', 'Name')

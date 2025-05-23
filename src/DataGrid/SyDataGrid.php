@@ -1,8 +1,11 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace Witte\SyDatagrid\DataGrid;
 
 use Doctrine\ORM\QueryBuilder;
-
+use Witte\SyDatagrid\DataGrid\Action;
+use Witte\SyDatagrid\DTO\Paginated;
+use Witte\SyDatagrid\Enum\ActionTypeEnum;
+use Witte\SyDatagrid\Service\SyDataGridService;
 class SyDataGrid
 {
     public const EMPTY_PLACEHOLDER = '---';
@@ -19,7 +22,7 @@ class SyDataGrid
     public string $resetUrl;
     private null|string $sortableColumn = null;
     private null|string $primaryKey = null;
-    private array $defaultSort = [];
+    private array $defaultOrder = [];
     public array $perPageOptions = [
         10,
         25,
@@ -29,7 +32,7 @@ class SyDataGrid
     public function __construct(public QueryBuilder $dataSource, string $resetUrl)
     {
         $this->resetUrl = $resetUrl;
-        $this->data = Service::transformData($dataSource);
+        $this->data = SyDataGridService::transformData($dataSource);
     }
 
     public function addColumn(string $key, string $label): Column
@@ -39,14 +42,9 @@ class SyDataGrid
         return $column;
     }
 
-    public function setDefaultDataSource(string $column, string $dir)
+    public function setDefaultOrder(string $column, string $dir)
     {
         $this->data->filters['order'] = [$column => $dir];
-    }
-
-    public function getDefaultSort(): array
-    {
-        return $this->defaultSort;
     }
 
     public function addAction(ActionTypeEnum $type): Action
@@ -79,12 +77,12 @@ class SyDataGrid
         return $this->primaryKey;
     }
 
-    public function getSortableColumn(): string|null
+    public function getSortableColumnName(): string|null
     {
         return $this->sortableColumn;
     }
 
-    public function jsonPaginationData(): string
+    public function jsonPaginatedData(): string
     {
         $array = json_decode(json_encode($this->data), true);
 
@@ -92,5 +90,4 @@ class SyDataGrid
 
         return json_encode($array);
     }
-
 }

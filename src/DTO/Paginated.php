@@ -1,5 +1,5 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace Witte\SyDatagrid\DTO;
 
 class Paginated
 {
@@ -7,10 +7,10 @@ class Paginated
     public int $totalPages;
     public array $filters = [];
     public function __construct(
-        public int $total,
-        public int $page,
-        public int $perPage,
-        public int $pageRange,
+        public int $total = 0,
+        public int $page = 1,
+        public int $perPage = 10,
+        public int $pageRange = 3,
         public array $data = [],
     ) {
         $this->visiblePages = $this->getVisiblePages();

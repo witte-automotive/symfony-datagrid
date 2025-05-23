@@ -1,7 +1,9 @@
 <?php
-namespace SyDataGrid\SyDataGrid;
+namespace Witte\SyDatagrid\Factory;
 
 use Doctrine\ORM\QueryBuilder;
+use Witte\SyDatagrid\DataGrid\SyDataGrid;
+use Witte\SyDatagrid\Service\PaginationService;
 use Symfony\Component\HttpFoundation\Request;
 use Twig\Environment;
 
@@ -34,7 +36,7 @@ class SyDataGridFactory
             foreach ($sort as $position => $id) {
                 $em->createQueryBuilder()
                     ->update($entity, $alias)
-                    ->set("$alias.{$grid->getSortableColumn()}", ':pos')
+                    ->set("$alias.{$grid->getSortableColumnName()}", ':pos')
                     ->where("$alias.id = :id")
                     ->setParameter('pos', ++$position)
                     ->setParameter('id', $id)
@@ -43,7 +45,7 @@ class SyDataGridFactory
             }
 
             if (!empty($filters['order']) && is_array($filters['order'])) {
-                $filters['order'] = [$grid->getSortableColumn(), 'asc'];
+                $filters['order'] = [$grid->getSortableColumnName(), 'asc'];
             }
 
             return [
@@ -85,6 +87,14 @@ class SyDataGridFactory
         );
 
         $grid->data->setFilters($filters);
+
+        //TODO
+        // return [
+        //     'pagination' => $grid->data->witnotData(),
+        //     'html' => $this->twig->render('@SyDataGrid/grid/grid.html.twig', [
+        //         'grid' => $grid
+        //     ])
+        // ];
 
         return [
             'pagination' => $grid->data->witnotData(),

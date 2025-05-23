@@ -1,6 +1,6 @@
 <?php
 
-use SyDataGrid\Kernel;
+use Witte\SyDatagrid\Kernel;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 

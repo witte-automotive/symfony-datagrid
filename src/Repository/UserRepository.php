@@ -1,9 +1,9 @@
 <?php
-namespace SyDataGrid\Repository;
+namespace Witte\SyDatagrid\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use SyDataGrid\Entity\User;
+use Witte\SyDatagrid\Entity\User;
 
 
 /**

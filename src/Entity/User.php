@@ -1,10 +1,10 @@
 <?php
-namespace SyDataGrid\Entity;
+namespace Witte\SyDatagrid\Entity;
 
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
-use SyDataGrid\Repository\UserRepository;
+use Witte\SyDatagrid\Repository\UserRepository;
 
 #[Entity(repositoryClass: UserRepository::class)]
 class User

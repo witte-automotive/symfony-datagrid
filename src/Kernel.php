@@ -1,6 +1,6 @@
 <?php
 
-namespace SyDataGrid;
+namespace Witte\SyDatagrid;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;

@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-	<twig:SyDataGrid grid="{{grid}}"/>
+	{% include "grid/grid.html.twig" with {
+	grid:grid
+} %}
 {% endblock %}
