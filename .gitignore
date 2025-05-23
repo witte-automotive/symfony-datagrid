@@ -15,4 +15,8 @@
 ###< pentatrion/vite-bundle ###
 /.vscode/*
 
+/src/Example
+
+### FOR DEBUG/DEV ###
 /assets/
+
