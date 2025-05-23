@@ -1,5 +1,5 @@
 {
-    "name": "witte/sydatagrid",
+    "name": "witte/sy-datagrid",
     "description": "Symfony DataGrid",
     "type": "symfony-bundle",
     "license": "proprietary",
