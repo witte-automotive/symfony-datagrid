@@ -13,6 +13,7 @@ class SyDataGridExtension extends Extension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
 
+        
         if ($container->hasDefinition('twig.loader')) {
             $container->getDefinition('twig.loader')
                 ->addMethodCall('addPath', [__DIR__ . '/../Resources/views', 'SyDataGrid']);
