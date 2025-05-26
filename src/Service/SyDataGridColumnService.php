@@ -1,5 +1,5 @@
 <?php
-namespace Witte\SyDatagrid;
+namespace Witte\SyDatagrid\Service;
 
 use Exception;
 use InvalidArgumentException;

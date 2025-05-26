@@ -1,7 +1,7 @@
 <?php
 namespace Witte\SyDatagrid\DataGrid;
 
-use Witte\SyDatagrid\SyDataGridColumnService;
+use Witte\SyDatagrid\Service\SyDataGridColumnService;
 use Witte\SyDatagrid\DTO\SeachableColumnOptions;
 use Witte\SyDatagrid\Enum\ColumnTypeEnum;
 use Witte\SyDatagrid\Enum\SearchableColumnEnum;
