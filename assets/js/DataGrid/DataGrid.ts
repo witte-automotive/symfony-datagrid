@@ -197,5 +197,26 @@ export default class DataGrid {
                 this.fetchPageData();
             })
         })
+
+        const resetButton = document.querySelectorAll<HTMLButtonElement>('.js-sydatagrid-reset-filter')
+
+        resetButton.forEach((btn) => {
+            const col = btn.dataset.col!
+
+            btn.addEventListener('click', () => {
+                const newOrder = { ...this.pdata.filters.order };
+                const newSearch = { ...this.pdata.filters.search };
+
+                delete newOrder[col];
+                delete newSearch[col];
+
+                this.pdata.filters = {
+                    order: newOrder,
+                    search: newSearch
+                };
+
+                this.fetchPageData()
+            })
+        })
     }
 }
