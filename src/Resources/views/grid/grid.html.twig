@@ -1,37 +1,79 @@
 <div class="js-sydatagrid-placeholder">
-	<div class="js-sydatagrid content-container bg-white shadow-md px-2 py-0" data-reset-url="{{grid.resetUrl}}" data-pagination-data='{{grid.jsonPaginationData}}'>
-
+	<div class="js-sydatagrid content-container bg-white shadow-md px-2 py-0" data-reset-url="{{grid.resetUrl}}" data-pagination-data='{{grid.jsonPaginatedData}}'>
 		<div class="min-h-[50vh] flex justify-center items-center js-sydatagrid-loader">
 			<div class="loader "></div>
 		</div>
 
-
-		<div class="js-sydatagrid-f-display-btn absolute top-2 left-2 p-2 rounded-full border bg-white opacity-50 hover:opacity-100 border-gray-400 z-10 cursor-pointer anim">
-			{{ux_icon('filter', {'class':'size-5'})}}
-		</div>
-
-		{% include "@SyDataGrid/grid/filters.html.twig" with {
-			filters: grid.data.filters
-		} %}
-
 		<div class="w-full overflow-auto hidden js-sydatagrid-table-container">
-			<table class="table w-full min-w-max">
-				<thead>
+			<table class="table w-full max-w-full">
+				<thead class="[&>tr>th]:w-[1%] [&>tr>th]:whitespace-nowrap">
 					<tr>
 						{% for col in grid.columns %}
 							<th class="p-3 text-center">
-								{{ col.label }}
+								<div class="flex justify-center items-center select-none group gap-1{% if col.isSortable %} cursor-pointer js-sydatagrid-col-sort{% endif %}" data-col="{{ col.key }}">
+									{% if col.isSortable %}
+										{% if grid.getOrderedColumn['col'] == col.key %}
+											{% if grid.getOrderedColumn['dir'] == 'asc' %}
+												<span data-sort-dir="desc" class="js-sydatagrid-col-sort-icon-placeholder rotate-180 group-hover:text-primary anim">
+													{{ ux_icon('sortactive', { 'class': 'size-4' }) }}
+												</span>
+											{% else %}
+												<span data-sort-dir="asc" class="js-sydatagrid-col-sort-icon-placeholder group-hover:text-primary anim">
+													{{ ux_icon('sortactive', { 'class': 'size-4' }) }}
+												</span>
+											{% endif %}
+										{% else %}
+											<span data-sort-dir="asc" class="js-sydatagrid-col-sort-icon-placeholder group-hover:text-primary anim">
+												{{ ux_icon('sortinactive', { 'class': 'size-4' }) }}
+											</span>
+										{% endif %}
+									{% endif %}
+									{{ col.label }}
+								</div>
 							</th>
 						{% endfor %}
 
 						{% if grid.hasActions %}
-							<th class="p-3 text-center w-24">Actions</th>
+							<th class="p-3 text-center !w-[.1%]">Actions</th>
 						{% endif %}
 
-						{% if grid.getSortableColumn is not null %}
-							<th class="p-3 w-10"></th>
+						{% if grid.getSortableColumnName is not null %}
+							<th class="!w-[.1%]"></th>
 						{% endif %}
 					</tr>
+
+					{% if grid.hasSearchableColumn %}
+						<tr>
+							{% for col in grid.columns %}
+								{% if col.isSearchable %}
+									{% set searchable = col.getSearchable %}
+									<th class="p-1">
+										{% if searchable.type.value == 1 %}
+											<input type="text" name="{{ col.key }}" value="{{grid.getSearchingColumn(col.key)}}" data-col="{{ col.key }}" class="rounded-md border w-full p-1 text-sm font-normal anim focus:border-primary js-sydatagird-col-search-input"/>
+										{% elseif searchable.type.value == 2 %}
+											<select name="{{col.key}}" data-col="{{col.key}}" class="rounded-md border w-full p-1 text-sm font-normal anim focus:border-primary js-sydatagird-col-search-select">
+												{% for key, val  in searchable.options['options'] %}
+													<option value="{{key}}" {% if grid.getSearchingColumn(col.key) == key %} selected {% endif %}>
+														{{val}}
+													</option>
+												{% endfor %}
+											</select>
+										{% endif %}
+									</th>
+								{% else %}
+									<th></th>
+								{% endif %}
+							{% endfor %}
+
+							{% if grid.hasActions %}
+								<th class="p-3 text-center !w-[.1%]"></th>
+							{% endif %}
+
+							{% if grid.getSortableColumnName is not null %}
+								<th class="!w-[.1%]"></th>
+							{% endif %}
+						</tr>
+					{% endif %}
 				</thead>
 
 				<tbody>
@@ -70,19 +112,19 @@
 								</td>
 							{% endif %}
 
-							{% if grid.getSortableColumn is not null %}
-								<td>
+							{% if grid.getSortableColumnName is not null %}
+								<td class="text-right ">
 									{{ ux_icon('sort', { 'class': 'js-sdg-sort-handle size-5 cursor-pointer hover:text-primary anim' }) }}
 								</td>
 							{% endif %}
 						</tr>
 					{% endfor %}
 				</tbody>
-			</tbody>
-		</table>
-	</div>
+			</table>
+		</div>
 
-	{% include "@SyDataGrid/grid/pagination.html.twig" with {
+		{% include "grid/pagination.html.twig" with {
 		paginated: grid.data,
 	} %}
-</div></div>
+	</div>
+</div>
