@@ -1,6 +1,7 @@
 <?php
 namespace Witte\SyDatagrid\DataGrid;
 
+use InvalidArgumentException;
 use Witte\SyDatagrid\Service\SyDataGridColumnService;
 use Witte\SyDatagrid\DTO\SeachableColumnOptions;
 use Witte\SyDatagrid\Enum\ColumnTypeEnum;
@@ -13,12 +14,12 @@ class Column
     private mixed $callback = null;
     private array $classes = [];
     private bool $sortable = true;
-
+    private array $typeOptions = [];
     public function __construct(public string $key, public string $label)
     {
     }
 
-    public function setSortable(bool $value = false)
+    public function setSortable(bool $value = true)
     {
         $this->sortable = $value;
         return $this;
@@ -29,8 +30,12 @@ class Column
         return $this->sortable;
     }
 
-    public function setType(ColumnTypeEnum $type)
+    public function setType(ColumnTypeEnum $type, array $options = [])
     {
+        if ($type->value === ColumnTypeEnum::BOOL && array_diff(['true', 'false'], array_keys($options)) !== []) {
+            throw new InvalidArgumentException('Column type BOOL must define true and false, like array("true" => "Yes", "false" => "No")');
+        }
+
         $this->type = $type;
         return $this;
     }

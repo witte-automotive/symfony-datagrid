@@ -23,11 +23,15 @@ class SyDataGridColumnService
         }
 
         $method = 'get' . ucfirst($column->key);
-
         if (method_exists($row, $method)) {
             $val = $row->$method();
         } else {
-            throw new InvalidArgumentException("Method '{$method}' does not exist on the given object for column '{$column->label}'.");
+            $method2 = 'is' . ucfirst($column->key);
+            if (method_exists($row, $method2)) {
+                $val = $row->$method2();
+            } else {
+                throw new InvalidArgumentException("Method '{$method}' or '{$method2}' does not exist on the given object for column '{$column->label}'.");
+            }
         }
 
         if ($column->getType() && $val) {
