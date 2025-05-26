@@ -140,7 +140,7 @@ export default class DataGrid {
 
         sortBtns.forEach(btn => {
             const col = btn.dataset.col!;
-            const dir = btn.querySelector<HTMLElement>('.js-sydatagrid-col-sort-icon-placeholder')?.dataset.sortDir === 'desc' ? 'asc' : 'desc'
+            const dir = btn.querySelector<HTMLElement>('.js-sydatagrid-col-sort-icon-placeholder')?.dataset.sortDir === 'asc' ? 'asc' : 'desc'
 
             btn.addEventListener('click', () => {
                 this.pdata.filters = {

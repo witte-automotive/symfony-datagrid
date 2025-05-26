@@ -14,11 +14,11 @@
 									{% if col.isSortable %}
 										{% if grid.getOrderedColumn['col'] == col.key %}
 											{% if grid.getOrderedColumn['dir'] == 'asc' %}
-												<span data-sort-dir="asc" class="js-sydatagrid-col-sort-icon-placeholder rotate-180 group-hover:text-primary anim">
+												<span data-sort-dir="desc" class="js-sydatagrid-col-sort-icon-placeholder rotate-180 group-hover:text-primary anim">
 													{{ ux_icon('sortactive', { 'class': 'size-4' }) }}
 												</span>
 											{% else %}
-												<span data-sort-dir="desc" class="js-sydatagrid-col-sort-icon-placeholder group-hover:text-primary anim">
+												<span data-sort-dir="asc" class="js-sydatagrid-col-sort-icon-placeholder group-hover:text-primary anim">
 													{{ ux_icon('sortactive', { 'class': 'size-4' }) }}
 												</span>
 											{% endif %}
