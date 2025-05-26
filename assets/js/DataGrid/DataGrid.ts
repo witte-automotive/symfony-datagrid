@@ -88,6 +88,7 @@ export default class DataGrid {
             this.pdata = rest as any;
 
             this.toggleLoader(true)
+
             const response = await Ajax.get<{ pagination: IPaginated } & { html: string }>(this.url, {
                 params: this.pdata,
                 headers: {
@@ -142,7 +143,10 @@ export default class DataGrid {
             const dir = btn.querySelector<HTMLElement>('.js-sydatagrid-col-sort-icon-placeholder')?.dataset.sortDir === 'desc' ? 'asc' : 'desc'
 
             btn.addEventListener('click', () => {
-                this.pdata.filters.order = { [col]: dir };
+                this.pdata.filters = {
+                    ...this.pdata.filters,
+                    order: { [col]: dir }
+                };
                 this.fetchPageData();
             })
         })

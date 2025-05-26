@@ -40,11 +40,7 @@ class SyDataGrid
         $this->columns[] = $column;
         return $column;
     }
-    public function setDefaultOrder(string $column, string $dir)
-    {
-        $this->data->filters['order'] = [$column => $dir];
-    }
-
+ 
     public function addAction(ActionTypeEnum $type): Action
     {
         $action = new Action($type);
