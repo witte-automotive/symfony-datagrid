@@ -40,7 +40,7 @@ class SyDataGrid
         $this->columns[] = $column;
         return $column;
     }
- 
+
     public function addAction(ActionTypeEnum $type): Action
     {
         $action = new Action($type);
@@ -92,6 +92,11 @@ class SyDataGrid
                 'dir' => $order[$col]
             ];
         }
+    }
+
+    public function getSearchingColumn(string $key): string
+    {
+        return current($this->data->filters['search'] ?? [])[$key] ?? '';
     }
 
     public function hasSearchableColumn(): bool

@@ -147,6 +147,54 @@ export default class DataGrid {
                     ...this.pdata.filters,
                     order: { [col]: dir }
                 };
+
+                this.fetchPageData();
+            })
+        })
+
+        const inputSearch = this.container.querySelectorAll<HTMLInputElement>('.js-sydatagird-col-search-input')
+        const selectSearch = this.container.querySelectorAll<HTMLSelectElement>('.js-sydatagird-col-search-select')
+
+        inputSearch.forEach((it) => {
+            let timeout: any;
+            const col = it.dataset.col!;
+
+            if (it.value.length > 0) {
+                this.pdata.filters = {
+                    ...this.pdata.filters,
+                    search: [...this.pdata.filters.search ?? [], { [col]: it.value }]
+                };
+            }
+
+            it.addEventListener('input', () => {
+                const val = it.value;
+
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+
+                timeout = setTimeout(() => {
+                    this.pdata.filters = {
+                        ...this.pdata.filters,
+                        search: [...this.pdata.filters.search ?? [], { [col]: val }]
+                    };
+                    this.fetchPageData();
+                }, 300);
+            });
+        });
+
+        selectSearch.forEach((it) => {
+            const col = it.dataset.col!
+
+            it.addEventListener('change', () => {
+                const val = it.value;
+
+                this.pdata.filters = {
+                    ...this.pdata.filters,
+                    search: [{ [col]: val }]
+                };
+
+                console.log(this.pdata.filters.search)
                 this.fetchPageData();
             })
         })

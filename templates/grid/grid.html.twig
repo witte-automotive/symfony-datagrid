@@ -47,12 +47,11 @@
 							{% for col in grid.columns %}
 								{% if col.isSearchable %}
 									{% set searchable = col.getSearchable %}
-
 									<th class="p-1">
 										{% if searchable.type.value == 1 %}
-											<input type="text" name="{{col.key}}" class="rounded-md border w-full p-1 text-sm font-normal anim focus:border-primary"/>
+											<input type="text" name="{{ col.key }}" value="{{grid.getSearchingColumn(col.key)}}" data-col="{{ col.key }}" class="rounded-md border w-full p-1 text-sm font-normal anim focus:border-primary js-sydatagird-col-search-input"/>
 										{% elseif searchable.type.value == 2 %}
-											<select name="{{col.key}}" class="rounded-md border w-full p-1 text-sm font-normal anim focus:border-primary">
+											<select name="{{col.key}}" data-col="{{col.key}}" class="rounded-md border w-full p-1 text-sm font-normal anim focus:border-primary js-sydatagird-col-search-select">
 												{% for key, val  in searchable.options['options'] %}
 													<option value="{{key}}">
 														{{val}}

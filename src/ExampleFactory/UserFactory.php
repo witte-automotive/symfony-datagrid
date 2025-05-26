@@ -36,8 +36,8 @@ class UserFactory
         $dg->addColumn('type', 'Type')
             ->setSearchable(SearchableColumnEnum::OPTIONS_SELECT, [
                 'options' => [
-                    0 => 'Coby',
-                    1 => 'Alphonso'
+                    'a' => 'Coby',
+                    'b' => 'Alphonso'
                 ]
             ]);
 
