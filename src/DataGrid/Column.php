@@ -12,10 +12,23 @@ class Column
     private SeachableColumnOptions|null $searchable = null;
     private mixed $callback = null;
     private array $classes = [];
+    private bool $sortable = true;
 
     public function __construct(public string $key, public string $label)
     {
     }
+
+    public function setSortable(bool $value = false)
+    {
+        $this->sortable = $value;
+        return $this;
+    }
+
+    public function isSortable(): bool
+    {
+        return $this->sortable;
+    }
+
     public function setType(ColumnTypeEnum $type)
     {
         $this->type = $type;

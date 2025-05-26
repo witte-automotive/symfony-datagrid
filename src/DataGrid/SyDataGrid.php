@@ -22,7 +22,6 @@ class SyDataGrid
     public string $resetUrl;
     private null|string $sortableColumn = null;
     private null|string $primaryKey = null;
-    private array $defaultOrder = [];
     public array $perPageOptions = [
         10,
         25,
@@ -79,6 +78,24 @@ class SyDataGrid
     public function getSortableColumnName(): string|null
     {
         return $this->sortableColumn;
+    }
+
+    public function getOrderedColumn(): array
+    {
+        $order = $this->data->filters['order'] ?? null;
+
+        if ($order === null) {
+            return [
+                'col' => null,
+                'dir' => null
+            ];
+        } else {
+            $col = array_key_first($order);
+            return [
+                'col' => $col,
+                'dir' => $order[$col]
+            ];
+        }
     }
 
     public function hasSearchableColumn(): bool

@@ -27,7 +27,7 @@ class SyDataGridColumnService
         if (method_exists($row, $method)) {
             $val = $row->$method();
         } else {
-            throw new \InvalidArgumentException("Method '{$method}' does not exist on the given object for column '{$column->label}'.");
+            throw new InvalidArgumentException("Method '{$method}' does not exist on the given object for column '{$column->label}'.");
         }
 
         if ($column->getType() && $val) {
@@ -81,5 +81,4 @@ class SyDataGridColumnService
             throw new InvalidArgumentException("Missing required searchable options: $keysString");
         }
     }
-
 }

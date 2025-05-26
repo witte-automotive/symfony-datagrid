@@ -10,7 +10,26 @@
 					<tr>
 						{% for col in grid.columns %}
 							<th class="p-3 text-center">
-								{{ col.label }}
+								<div class="flex justify-center items-center select-none group gap-1{% if col.isSortable %} cursor-pointer js-sydatagrid-col-sort{% endif %}" data-col="{{ col.key }}">
+									{% if col.isSortable %}
+										{% if grid.getOrderedColumn['col'] == col.key %}
+											{% if grid.getOrderedColumn['dir'] == 'asc' %}
+												<span data-sort-dir="asc" class="js-sydatagrid-col-sort-icon-placeholder rotate-180 group-hover:text-primary anim">
+													{{ ux_icon('sortactive', { 'class': 'size-4' }) }}
+												</span>
+											{% else %}
+												<span data-sort-dir="desc" class="js-sydatagrid-col-sort-icon-placeholder group-hover:text-primary anim">
+													{{ ux_icon('sortactive', { 'class': 'size-4' }) }}
+												</span>
+											{% endif %}
+										{% else %}
+											<span data-sort-dir="asc" class="js-sydatagrid-col-sort-icon-placeholder group-hover:text-primary anim">
+												{{ ux_icon('sortinactive', { 'class': 'size-4' }) }}
+											</span>
+										{% endif %}
+									{% endif %}
+									{{ col.label }}
+								</div>
 							</th>
 						{% endfor %}
 
@@ -102,11 +121,11 @@
 						</tr>
 					{% endfor %}
 				</tbody>
-			</tbody>
-		</table>
-	</div>
+			</table>
+		</div>
 
-	{% include "grid/pagination.html.twig" with {
+		{% include "grid/pagination.html.twig" with {
 		paginated: grid.data,
 	} %}
-</div></div>
+	</div>
+</div>

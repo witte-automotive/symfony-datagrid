@@ -30,6 +30,7 @@ export default class DataGrid {
         this.bindPaginationEvents();
         this.initSortable();
         this.toggleLoader(false);
+        this.initFilter();
     }
 
     private bindPaginationEvents = (): void => {
@@ -131,5 +132,19 @@ export default class DataGrid {
                 await this.fetchPageData();
             },
         });
+    }
+
+    private initFilter = () => {
+        const sortBtns = this.container.querySelectorAll<HTMLElement>('.js-sydatagrid-col-sort')
+
+        sortBtns.forEach(btn => {
+            const col = btn.dataset.col!;
+            const dir = btn.querySelector<HTMLElement>('.js-sydatagrid-col-sort-icon-placeholder')?.dataset.sortDir === 'desc' ? 'asc' : 'desc'
+
+            btn.addEventListener('click', () => {
+                this.pdata.filters.order = { [col]: dir };
+                this.fetchPageData();
+            })
+        })
     }
 }

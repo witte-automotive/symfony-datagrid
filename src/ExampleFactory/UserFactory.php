@@ -27,7 +27,8 @@ class UserFactory
         $dg->setPrimaryKey('id');
         $dg->setDefaultOrder('position', 'asc');
 
-        $dg->addColumn('id', 'Id')->setSearchable();
+        $dg->addColumn('id', 'Id')
+            ->setSearchable();
 
         $dg->addColumn('name', 'Name')
             ->setSearchable();
@@ -43,6 +44,7 @@ class UserFactory
         $dg->addColumn('position', 'Position');
 
         $dg->addAction(ActionTypeEnum::SHOW);
+        $dg->setDefaultOrder('id', 'asc');
 
         $dg->setSortable('position');
 

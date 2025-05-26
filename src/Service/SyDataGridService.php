@@ -10,5 +10,4 @@ final readonly class SyDataGridService
     {
         return PaginationService::paginate($dataSource);
     }
-
 }
