@@ -9,7 +9,7 @@ interface IPaginated {
     perPage: number;
     pageRange: number;
     filters: {
-        search?: { [key: string]: string }[];
+        search?: { [key: string]: string };
         order?: { [column: string]: 'asc' | 'desc' };
     };
     sorted: string[]
@@ -162,7 +162,7 @@ export default class DataGrid {
             if (it.value.length > 0) {
                 this.pdata.filters = {
                     ...this.pdata.filters,
-                    search: [...this.pdata.filters.search ?? [], { [col]: it.value }]
+                    search: { ...this.pdata.filters.search, [col]: it.value }
                 };
             }
 
@@ -176,7 +176,7 @@ export default class DataGrid {
                 timeout = setTimeout(() => {
                     this.pdata.filters = {
                         ...this.pdata.filters,
-                        search: [...this.pdata.filters.search ?? [], { [col]: val }]
+                        search: { ...this.pdata.filters.search, [col]: val }
                     };
                     this.fetchPageData();
                 }, 300);
@@ -191,10 +191,9 @@ export default class DataGrid {
 
                 this.pdata.filters = {
                     ...this.pdata.filters,
-                    search: [{ [col]: val }]
+                    search: { ...this.pdata.filters.search, [col]: val }
                 };
 
-                console.log(this.pdata.filters.search)
                 this.fetchPageData();
             })
         })

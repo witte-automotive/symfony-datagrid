@@ -55,14 +55,8 @@ class SyDataGridFactory
         }
 
         if (!empty($filters['search']) && is_array($filters['search'])) {
-            foreach ($filters['search'] as $search) {
-                if (!is_array($search))
-                    continue;
-
-                $column = array_key_first($search);
-                $value = $search[$column];
-
-                if ($column && $value !== '') {
+            foreach ($filters['search'] as $column => $value) {
+                if ($value !== '') {
                     $grid->dataSource
                         ->andWhere("$alias.$column LIKE :search_$column")
                         ->setParameter("search_$column", "%$value%");

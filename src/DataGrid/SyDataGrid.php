@@ -96,7 +96,7 @@ class SyDataGrid
 
     public function getSearchingColumn(string $key): string
     {
-        return current($this->data->filters['search'] ?? [])[$key] ?? '';
+        return ($this->data->filters['search'] ?? [])[$key] ?? '';
     }
 
     public function hasSearchableColumn(): bool
