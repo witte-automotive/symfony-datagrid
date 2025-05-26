@@ -34,7 +34,7 @@ class SyDataGridColumnService
             }
         }
 
-        if ($column->getType() && $val) {
+        if ($column->getType() && ($val !== null || $val !== '')) {
             if ($column->getType() === ColumnTypeEnum::DATE || $column->getType() === ColumnTypeEnum::DATETIME) {
                 try {
                     if (is_string($val)) {
@@ -56,10 +56,18 @@ class SyDataGridColumnService
                     $val = null;
                 }
             }
+
+            if ($column->getType() === ColumnTypeEnum::BOOL) {
+                $options = $column->getTypeOptions();
+                (bool) $val === true
+                    ? $val = $options['true']
+                    : $val = $options['false'];
+            }
         }
 
+
         if ((!is_string($val) && !is_numeric($val)) && $val !== null && !($val instanceof \Stringable)) {
-            throw new Exception("Cannot resolve value: missing type setting for non-string column with key \"{$column->key}\".");
+            throw new Exception("Cannot resolve value: missing type setting for non-string or non-numeric column with key \"{$column->key}\".");
         }
 
         if ($val === null || (is_string($val) && strlen($val) === 0)) {

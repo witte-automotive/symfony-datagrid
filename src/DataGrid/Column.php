@@ -32,10 +32,10 @@ class Column
 
     public function setType(ColumnTypeEnum $type, array $options = [])
     {
-        if ($type->value === ColumnTypeEnum::BOOL && array_diff(['true', 'false'], array_keys($options)) !== []) {
-            throw new InvalidArgumentException('Column type BOOL must define true and false, like array("true" => "Yes", "false" => "No")');
+        if ($type->value === ColumnTypeEnum::BOOL->value && array_diff(['true', 'false'], array_keys($options)) !== []) {
+            throw new InvalidArgumentException('Column type BOOL must define options with true and false, like array("true" => "Yes", "false" => "No")');
         }
-
+        $this->typeOptions = $options;
         $this->type = $type;
         return $this;
     }
@@ -43,6 +43,11 @@ class Column
     public function getType(): ColumnTypeEnum
     {
         return $this->type;
+    }
+
+      public function getTypeOptions(): array
+    {
+        return $this->typeOptions;
     }
 
     public function isSearchable(): bool
@@ -54,7 +59,6 @@ class Column
     {
         return $this->searchable;
     }
-
 
     /**
      * @param callable(mixed): string $callback
