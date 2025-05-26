@@ -12,7 +12,7 @@ class SyDataGridFactory
     public function __construct(private Environment $twig)
     {
     }
-    
+
     public function create(QueryBuilder $dataSource, string $resetUrl): SyDataGrid
     {
         return new SyDataGrid($dataSource, $resetUrl);
@@ -36,7 +36,7 @@ class SyDataGridFactory
             foreach ($sort as $position => $id) {
                 $em->createQueryBuilder()
                     ->update($entity, $alias)
-                    ->set("$alias.{$grid->getSortableColumn()}", ':pos')
+                    ->set("$alias.{$grid->getSortableColumnName()}", ':pos')
                     ->where("$alias.id = :id")
                     ->setParameter('pos', ++$position)
                     ->setParameter('id', $id)
@@ -45,7 +45,7 @@ class SyDataGridFactory
             }
 
             if (!empty($filters['order']) && is_array($filters['order'])) {
-                $filters['order'] = [$grid->getSortableColumn(), 'asc'];
+                $filters['order'] = [$grid->getSortableColumnName(), 'asc'];
             }
 
             return [
@@ -55,14 +55,8 @@ class SyDataGridFactory
         }
 
         if (!empty($filters['search']) && is_array($filters['search'])) {
-            foreach ($filters['search'] as $search) {
-                if (!is_array($search))
-                    continue;
-
-                $column = array_key_first($search);
-                $value = $search[$column];
-
-                if ($column && $value !== '') {
+            foreach ($filters['search'] as $column => $value) {
+                if ($value !== '') {
                     $grid->dataSource
                         ->andWhere("$alias.$column LIKE :search_$column")
                         ->setParameter("search_$column", "%$value%");
@@ -88,9 +82,17 @@ class SyDataGridFactory
 
         $grid->data->setFilters($filters);
 
+        //TODO
+        // return [
+        //     'pagination' => $grid->data->witnotData(),
+        //     'html' => $this->twig->render('@SyDataGrid/grid/grid.html.twig', [
+        //         'grid' => $grid
+        //     ])
+        // ];
+
         return [
             'pagination' => $grid->data->witnotData(),
-            'html' => $this->twig->render('@SyDataGrid/grid/grid.html.twig', [
+            'html' => $this->twig->render('grid/grid.html.twig', [
                 'grid' => $grid
             ])
         ];

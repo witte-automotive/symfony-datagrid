@@ -22,7 +22,6 @@ class SyDataGrid
     public string $resetUrl;
     private null|string $sortableColumn = null;
     private null|string $primaryKey = null;
-    private array $defaultSort = [];
     public array $perPageOptions = [
         10,
         25,
@@ -40,16 +39,6 @@ class SyDataGrid
         $column = new Column($key, $label);
         $this->columns[] = $column;
         return $column;
-    }
-
-    public function setDefaultDataSource(string $column, string $dir)
-    {
-        $this->data->filters['order'] = [$column => $dir];
-    }
-
-    public function getDefaultSort(): array
-    {
-        return $this->defaultSort;
     }
 
     public function addAction(ActionTypeEnum $type): Action
@@ -82,12 +71,40 @@ class SyDataGrid
         return $this->primaryKey;
     }
 
-    public function getSortableColumn(): string|null
+    public function getSortableColumnName(): string|null
     {
         return $this->sortableColumn;
     }
 
-    public function jsonPaginationData(): string
+    public function getOrderedColumn(): array
+    {
+        $order = $this->data->filters['order'] ?? null;
+
+        if ($order === null) {
+            return [
+                'col' => null,
+                'dir' => null
+            ];
+        } else {
+            $col = array_key_first($order);
+            return [
+                'col' => $col,
+                'dir' => $order[$col]
+            ];
+        }
+    }
+
+    public function getSearchingColumn(string $key): string
+    {
+        return ($this->data->filters['search'] ?? [])[$key] ?? '';
+    }
+
+    public function hasSearchableColumn(): bool
+    {
+        return count(array_filter($this->columns, fn(Column $it): bool => $it->isSearchable())) > 0;
+    }
+
+    public function jsonPaginatedData(): string
     {
         $array = json_decode(json_encode($this->data), true);
 
@@ -95,5 +112,4 @@ class SyDataGrid
 
         return json_encode($array);
     }
-
 }

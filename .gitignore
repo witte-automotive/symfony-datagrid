@@ -14,3 +14,4 @@
 ###< pentatrion/vite-bundle ###
 /.vscode/*
 /.vite/*
+/src/src
