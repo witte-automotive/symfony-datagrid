@@ -19,11 +19,13 @@ class Action
     public function setLinkCallback($callback)
     {
         $this->linkCallback = $callback;
+        return $this;
     }
 
     public function setClasses(string $classes)
     {
         $this->classes = $classes;
+        return $this;
     }
 
     public function setStyles(string $styles)

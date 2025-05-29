@@ -15,7 +15,7 @@
 			{% endif %}
 
 			<div class="flex js-sdg-p-fp-els-cont">
-				{% if paginated.page >= paginated.pageRange - 1 + (paginated.pageRange // 2) %}
+				{% if paginated.page >= paginated.pageRange - 1 + ((paginated.pageRange // 2) +1 )%}
 					<button type="button" data-page="1" class="js-sdg-p-fp relative inline-flex items-center px-4 py-2 border text-gray-700 hover:bg-light">
 						1
 					</button>
