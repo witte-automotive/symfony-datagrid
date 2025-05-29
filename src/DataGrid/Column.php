@@ -1,6 +1,7 @@
 <?php
 namespace Witte\SyDatagrid\DataGrid;
 
+use Witte\SyDatagrid\Enum\ColumnAttributedTagsEnum;
 use InvalidArgumentException;
 use Witte\SyDatagrid\Service\SyDataGridColumnService;
 use Witte\SyDatagrid\DTO\SeachableColumnOptions;
@@ -15,6 +16,7 @@ class Column
     private array $classes = [];
     private bool $sortable = true;
     private array $typeOptions = [];
+    private array $attributes = [];
     public function __construct(public string $key, public string $label)
     {
     }
@@ -45,9 +47,17 @@ class Column
         return $this->type;
     }
 
-      public function getTypeOptions(): array
+    public function getTypeOptions(): array
     {
         return $this->typeOptions;
+    }
+
+    public function setSearchable(SearchableColumnEnum|null $type = SearchableColumnEnum::QUERY, array $options = []): self
+    {
+        SyDataGridColumnService::validateSearchableOptions($type, $options);
+
+        $this->searchable = new SeachableColumnOptions($type, $options);
+        return $this;
     }
 
     public function isSearchable(): bool
@@ -69,33 +79,25 @@ class Column
         return $this;
     }
 
-    public function setClasses(array $classes)
-    {
-        $this->classes = $classes;
-        return $this;
-    }
-
-    public function getClasses(): array
-    {
-        return $this->classes;
-    }
-
     public function getCallback(): mixed
     {
         return $this->callback;
-    }
-
-    public function setSearchable(SearchableColumnEnum|null $type = SearchableColumnEnum::QUERY, array $options = []): self
-    {
-        SyDataGridColumnService::validateSearchableOptions($type, $options);
-
-        $this->searchable = new SeachableColumnOptions($type, $options);
-        return $this;
     }
 
     public function value($row): string
     {
         $val = SyDataGridColumnService::resolveValue($this, $row);
         return $val;
+    }
+
+    public function setAttributes(ColumnAttributedTagsEnum $tag, array $attributes)
+    {
+        $this->attributes[$tag->value] = $attributes;
+        return $this;
+    }
+
+    public function getAttribute(int $val): array
+    {
+        return $this->attributes[$val] ?? [];
     }
 }

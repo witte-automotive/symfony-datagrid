@@ -7,6 +7,7 @@ class Action
     public ActionTypeEnum $type;
     public mixed $linkCallback = null;
     public string $classes = '';
+    public string $styles = '';
     public function __construct(ActionTypeEnum $type)
     {
         $this->type = $type;
@@ -23,6 +24,11 @@ class Action
     public function setClasses(string $classes)
     {
         $this->classes = $classes;
+    }
+
+    public function setStyles(string $styles)
+    {
+        $this->styles = $styles;
     }
 
     public function link(mixed $row)
