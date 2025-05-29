@@ -1,3 +1,2 @@
-definovat v jakých sloupci chci vyhledávat,
-
-udělat 
+Možnost definici titlu
+Možnost stylování
