@@ -41,6 +41,10 @@ class Paginated
             $start = max(1, $end - $range + 1);
         }
 
+        if ($start === 1 && $end === 0) {
+            return [];
+        }
+
         return range($start, $end);
     }
 

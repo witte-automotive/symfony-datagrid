@@ -36,3 +36,8 @@ select {
     background-size: 20% 100%, 20% 100%, 20% 100%;
   }
 }
+
+.ico-edit {
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+}
