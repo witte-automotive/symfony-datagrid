@@ -9,8 +9,8 @@
 				<thead class="[&>tr>th]:w-[1%] [&>tr>th]:whitespace-nowrap">
 					<tr>
 						{% for col in grid.columns %}
-							<th class="p-3 text-center">
-								<div class="flex justify-center items-center select-none group gap-1{% if col.isSortable %} cursor-pointer js-sydatagrid-col-sort{% endif %}" data-col="{{ col.key }}">
+							<th {% if col.getAttribute(0)['class'] is not defined %} class="p-3 text-center" {% endif %} {% for attr, val in col.getAttribute(0) %} {{ attr }}="{{ val }}" {% endfor %}>
+								<div {% if col.getAttribute(1)['class'] is not defined %} class="flex justify-center items-center select-none group gap-1{% if col.isSortable %} cursor-pointer js-sydatagrid-col-sort{% endif %}" {% endif %} data-col="{{ col.key }}" {% for attr, val in col.getAttribute(1) %} {{ attr }}="{{ val }}" {% endfor %}>
 									{% if col.isSortable %}
 										{% if grid.getOrderedColumn['col'] == col.key %}
 											{% if grid.getOrderedColumn['dir'] == 'asc' %}
@@ -97,7 +97,7 @@
 					{% for row in grid.data.data %}
 						<tr class="border-t even:bg-light js-sdg-row" {% if grid.getPrimaryKey is not null %} data-id="{{ attribute(row, grid.getPrimaryKey) }}" {% endif %}>
 							{% for col in grid.columns %}
-								<td class="text-center p-4">
+								<td {% if col.getAttribute(2)['class'] is not defined %} class="text-center p-4" {% endif %} {% for attr, val in col.getAttribute(2) %} {{ attr }}="{{ val }}" {% endfor %}>
 									{{ col.value(row) }}
 								</td>
 							{% endfor %}
@@ -108,7 +108,7 @@
 										{% for action in grid.actions %}
 											{% set type = action.type.value %}
 											{% if type == 'create' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-create {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-create {{ action.classes }}" style="{{ action.styles }}">
 													<svg version="1.1" id="Layer_1" x="0px" y="0px" width="122.881px" height="122.88px" viewbox="0 0 122.881 122.88" enable-background="new 0 0 122.881 122.88" space="preserve" fill="currentColor" class="size-5" aria-hidden="true">
 														<g>
 															<path d="M56.573,4.868c0-0.655,0.132-1.283,0.37-1.859c0.249-0.6,0.61-1.137,1.056-1.583C58.879,0.545,60.097,0,61.44,0 c0.658,0,1.287,0.132,1.863,0.371c0.012,0.005,0.023,0.011,0.037,0.017c0.584,0.248,1.107,0.603,1.543,1.039 c0.881,0.88,1.426,2.098,1.426,3.442c0,0.03-0.002,0.06-0.006,0.089v51.62l51.619,0c0.029-0.003,0.061-0.006,0.09-0.006 c0.656,0,1.285,0.132,1.861,0.371c0.014,0.005,0.025,0.011,0.037,0.017c0.584,0.248,1.107,0.603,1.543,1.039 c0.881,0.88,1.428,2.098,1.428,3.441c0,0.654-0.133,1.283-0.371,1.859c-0.248,0.6-0.609,1.137-1.057,1.583 c-0.445,0.445-0.98,0.806-1.58,1.055v0.001c-0.576,0.238-1.205,0.37-1.861,0.37c-0.029,0-0.061-0.002-0.09-0.006l-51.619,0.001 v51.619c0.004,0.029,0.006,0.06,0.006,0.09c0,0.656-0.133,1.286-0.371,1.861c-0.006,0.014-0.012,0.025-0.018,0.037 c-0.248,0.584-0.602,1.107-1.037,1.543c-0.883,0.882-2.1,1.427-3.443,1.427c-0.654,0-1.283-0.132-1.859-0.371 c-0.6-0.248-1.137-0.609-1.583-1.056c-0.445-0.444-0.806-0.98-1.055-1.58h-0.001c-0.239-0.575-0.371-1.205-0.371-1.861 c0-0.03,0.002-0.061,0.006-0.09V66.303H4.958c-0.029,0.004-0.059,0.006-0.09,0.006c-0.654,0-1.283-0.132-1.859-0.371 c-0.6-0.248-1.137-0.609-1.583-1.056c-0.445-0.445-0.806-0.98-1.055-1.58H0.371C0.132,62.726,0,62.097,0,61.44 c0-0.655,0.132-1.283,0.371-1.859c0.249-0.6,0.61-1.137,1.056-1.583c0.881-0.881,2.098-1.426,3.442-1.426 c0.031,0,0.061,0.002,0.09,0.006l51.62,0l0-51.62C56.575,4.928,56.573,4.898,56.573,4.868L56.573,4.868z"></path>
@@ -116,7 +116,7 @@
 													</svg>
 												</a>
 											{% elseif type == 'edit' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-edit {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-edit {{ action.classes }}" style="{{ action.styles }}">
 													<svg version="1.1" id="Layer_1" x="0px" y="0px" viewbox="0 0 121.48 122.88" style="enable-background:new 0 0 121.48 122.88" space="preserve" fill="currentColor" class="size-5" aria-hidden="true">
 														<g>
 															<path class="ico-edit" d="M96.84,2.22l22.42,22.42c2.96,2.96,2.96,7.8,0,10.76l-12.4,12.4L73.68,14.62l12.4-12.4 C89.04-0.74,93.88-0.74,96.84,2.22L96.84,2.22z M70.18,52.19L70.18,52.19l0,0.01c0.92,0.92,1.38,2.14,1.38,3.34 c0,1.2-0.46,2.41-1.38,3.34v0.01l-0.01,0.01L40.09,88.99l0,0h-0.01c-0.26,0.26-0.55,0.48-0.84,0.67h-0.01 c-0.3,0.19-0.61,0.34-0.93,0.45c-1.66,0.58-3.59,0.2-4.91-1.12h-0.01l0,0v-0.01c-0.26-0.26-0.48-0.55-0.67-0.84v-0.01 c-0.19-0.3-0.34-0.61-0.45-0.93c-0.58-1.66-0.2-3.59,1.11-4.91v-0.01l30.09-30.09l0,0h0.01c0.92-0.92,2.14-1.38,3.34-1.38 c1.2,0,2.41,0.46,3.34,1.38L70.18,52.19L70.18,52.19L70.18,52.19z M45.48,109.11c-8.98,2.78-17.95,5.55-26.93,8.33 C-2.55,123.97-2.46,128.32,3.3,108l9.07-32v0l-0.03-0.03L67.4,20.9l33.18,33.18l-55.07,55.07L45.48,109.11L45.48,109.11z M18.03,81.66l21.79,21.79c-5.9,1.82-11.8,3.64-17.69,5.45c-13.86,4.27-13.8,7.13-10.03-6.22L18.03,81.66L18.03,81.66z"></path>
@@ -124,7 +124,7 @@
 													</svg>
 												</a>
 											{% elseif type == 'show' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-show {{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-show {{ action.classes }}" style="{{ action.styles }}">
 													<svg version="1.1" id="Layer_1" x="0px" y="0px" viewbox="0 0 122.88 83.78" style="enable-background:new 0 0 122.88 83.78" space="preserve" fill="currentColor" class="size-5" aria-hidden="true">
 														<g>
 															<path d="M95.73,10.81c10.53,7.09,19.6,17.37,26.48,29.86l0.67,1.22l-0.67,1.21c-6.88,12.49-15.96,22.77-26.48,29.86 C85.46,79.88,73.8,83.78,61.44,83.78c-12.36,0-24.02-3.9-34.28-10.81C16.62,65.87,7.55,55.59,0.67,43.1L0,41.89l0.67-1.22 c6.88-12.49,15.95-22.77,26.48-29.86C37.42,3.9,49.08,0,61.44,0C73.8,0,85.45,3.9,95.73,10.81L95.73,10.81z M60.79,22.17l4.08,0.39 c-1.45,2.18-2.31,4.82-2.31,7.67c0,7.48,5.86,13.54,13.1,13.54c2.32,0,4.5-0.62,6.39-1.72c0.03,0.47,0.05,0.94,0.05,1.42 c0,11.77-9.54,21.31-21.31,21.31c-11.77,0-21.31-9.54-21.31-21.31C39.48,31.71,49.02,22.17,60.79,22.17L60.79,22.17L60.79,22.17z M109,41.89c-5.5-9.66-12.61-17.6-20.79-23.11c-8.05-5.42-17.15-8.48-26.77-8.48c-9.61,0-18.71,3.06-26.76,8.48 c-8.18,5.51-15.29,13.45-20.8,23.11c5.5,9.66,12.62,17.6,20.8,23.1c8.05,5.42,17.15,8.48,26.76,8.48c9.62,0,18.71-3.06,26.77-8.48 C96.39,59.49,103.5,51.55,109,41.89L109,41.89z"></path>
@@ -132,7 +132,7 @@
 													</svg>
 												</a>
 											{% elseif type == 'delete' %}
-												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-create delete{{ action.classes }}">
+												<a href="{{ action.link(row) }}" class="hover:text-primary anim sydatagrid-action-create delete{{ action.classes }}" style="{{ action.styles }}">
 													<svg version="1.1" id="Layer_1" x="0px" y="0px" width="109.484px" height="122.88px" viewbox="0 0 109.484 122.88" enable-background="new 0 0 109.484 122.88" space="preserve" fill="currentColor" class="size-5" aria-hidden="true">
 														<g>
 															<path fill-rule="evenodd" clip-rule="evenodd" d="M2.347,9.633h38.297V3.76c0-2.068,1.689-3.76,3.76-3.76h21.144 c2.07,0,3.76,1.691,3.76,3.76v5.874h37.83c1.293,0,2.347,1.057,2.347,2.349v11.514H0V11.982C0,10.69,1.055,9.633,2.347,9.633 L2.347,9.633z M8.69,29.605h92.921c1.937,0,3.696,1.599,3.521,3.524l-7.864,86.229c-0.174,1.926-1.59,3.521-3.523,3.521h-77.3 c-1.934,0-3.352-1.592-3.524-3.521L5.166,33.129C4.994,31.197,6.751,29.605,8.69,29.605L8.69,29.605z M69.077,42.998h9.866v65.314 h-9.866V42.998L69.077,42.998z M30.072,42.998h9.867v65.314h-9.867V42.998L30.072,42.998z M49.572,42.998h9.869v65.314h-9.869 V42.998L49.572,42.998z"></path>
