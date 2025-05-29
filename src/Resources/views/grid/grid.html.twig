@@ -1,5 +1,11 @@
 <div class="js-sydatagrid-placeholder">
 	<div class="js-sydatagrid content-container bg-white shadow-md px-2 py-0" data-reset-url="{{grid.resetUrl}}" data-pagination-data='{{grid.jsonPaginatedData}}'>
+		{% if grid.title is not null %}
+			<div class="p-2 text-lg font-bold">
+				{{grid.title}}
+			</div>
+		{% endif %}
+
 		<div class="min-h-[50vh] flex justify-center items-center js-sydatagrid-loader">
 			<div class="loader "></div>
 		</div>

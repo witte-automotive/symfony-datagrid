@@ -27,11 +27,16 @@ class SyDataGrid
         25,
         50
     ];
-
+    public string|null $title = null;
     public function __construct(public QueryBuilder $dataSource, string $resetUrl)
     {
         $this->resetUrl = $resetUrl;
         $this->data = SyDataGridService::transformData($dataSource);
+    }
+
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
     }
 
     public function addColumn(string $key, string $label): Column
