@@ -73,6 +73,8 @@
 													{% endfor %}
 												</select>
 											{% endif %}
+
+											{% if grid.getSearchingColumn(col.key) %}
 											<div class="js-sydatagrid-reset-filter" data-col="{{col.key}}">
 												<svg version="1.1" id="Layer_1" x="0px" y="0px" width="122.881px" height="122.88px" viewbox="0 0 122.881 122.88" enable-background="new 0 0 122.881 122.88" space="preserve" fill="currentColor" class="size-4 ml-2 anim hover:text-primary cursor-pointer" aria-hidden="true">
 													<g>
@@ -80,6 +82,7 @@
 													</g>
 												</svg>
 											</div>
+											{% endif %}
 
 										</div>
 									</th>
